@@ -15,7 +15,7 @@ exposed_pad: {present: false}
 pin1: {description: "top-left, left row counting down; pins 4,5 on the right, 5 top-right"}
 pin1_side: {x: neg, y: neg}
 pin_table: {1: OUT, 2: "V-", 3: "+IN", 4: "-IN", 5: "V+"}
-symbol_pin_names: {3: "+", 4: "-"}
+symbol_pin_names: {3: "+", 4: "-", 1: "~"}
 risk: {level: high, reason: "SOT-23 family, 5-pin numbering"}
 verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
-notes: "TI land example: 1.1 x 0.6 pads, 2.6 mm row spacing; KiCad stdlib 1.325 x 0.6 at 2.275."
+notes: "TI land example: 1.1 x 0.6 pads, 2.6 mm row spacing; KiCad stdlib 1.325 x 0.6 at 2.275. Stdlib OPA197xDBV draws the output pin unnamed (~); accepted."

@@ -167,6 +167,8 @@ def load_netlist(path):
 
 
 def norm_pin(s):
+    if str(s).strip() in ("", "~"):
+        return ""  # unnamed symbol pin: "~" in libparts, "" in pinfunction
     s = str(s).lower().replace("~{", "").replace("}", "")
     s = re.sub(r"[\u2010-\u2015\u2212]", "-", s)
     return re.sub(r"[\s_]+", "", s)
