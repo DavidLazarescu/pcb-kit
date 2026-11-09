@@ -12,3 +12,6 @@ ERC 0 does not prove correctness. Verify connectivity independently with kicad-c
 - Save a verified baseline netlist into `verify/` in the repo after each accepted state.
 - Verification is done by a different agent than the builder (`schematic-verifier`).
 - Say what was verified and what was not.
+
+## After a review-driven change
+- An intended electrical change (e.g. moving one resistor end) must show up in netcompare as exactly that member moving between two nets; anything else is an error. Then save a new baseline (`netlist_baseline_<date>b.net`) and commit it with the schematic.
