@@ -44,3 +44,7 @@ Root `.kicad_sch`, `SCHEMATIC_SPEC.md`, baseline netlist in `verify/` if one exi
 - ERC 0 with a bridged isolation barrier after a half-finished rework.
 - Trusting Konnect's own readback instead of an independent kicad-cli export.
 - Skipping netcompare because "only cosmetic".
+
+## Also read
+- `${CLAUDE_PLUGIN_ROOT}/rules/45-schematic-review-layout.md` (uniform fields, horizontal text, review structure)
+- `${CLAUDE_PLUGIN_ROOT}/rules/41-system-overview.md` (overview PDF, update on structural change)

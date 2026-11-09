@@ -47,3 +47,7 @@ Invoke `konnect` and `kicad-schematic` first; this skill adds the kit's procedur
 - Label-scattered circuits read as unconnected.
 - Hand-drawn symbols with overlapping pin names.
 - User and agent editing the same file.
+
+## Also read
+- `${CLAUDE_PLUGIN_ROOT}/rules/45-schematic-review-layout.md` (uniform fields, horizontal text, review structure)
+- `${CLAUDE_PLUGIN_ROOT}/rules/41-system-overview.md` (overview PDF, update on structural change)

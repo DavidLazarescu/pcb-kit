@@ -17,8 +17,8 @@ Phase skills each add what the generic Konnect skills (`konnect`, `kicad-schemat
 | 20 | `pcb-components` | Every part: exact MPN, stock + date, datasheet saved, footprint checked, trap list done |
 | 30 | `pcb-calculations` | Every block calculated and documented, thermal and SOA done, critical loop simulated across corners |
 | 40 | `pcb-schematic-spec` | Spec lists every part, pin and net; reviewed against DESIGN |
-| 50 | `pcb-schematic-build` | Sheets built by Konnect, repo committed beforehand, style rules met |
-| 60 | `pcb-verify` | Netlist matches spec, ERC reviewed, BOM fields complete, baseline saved, independent check done |
+| 50 | `pcb-schematic-build` | Sheets built by Konnect, repo committed beforehand, style and review-layout rules met (`rules/45`), system overview created or updated (`rules/41`) |
+| 60 | `pcb-verify` | Netlist matches spec, ERC reviewed, BOM fields complete, baseline saved, sheets review-ready, overview current, independent check done |
 | 70 | `pcb-layout-plan` | Written routing plan, approved by the user |
 | 80 | `pcb-layout` | Routed per plan, DRC 0, independent review done |
 | 90 | `pcb-manufacture` | Stock re-checked, outputs generated, first-board bench tests listed |

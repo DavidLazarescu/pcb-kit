@@ -4,7 +4,9 @@
 1. Commit the repository state (before any agent build or rework).
 2. One agent per sheet, run in parallel, each touching only its own sheet file and its own reference range.
 3. Konnect only. Check `list_toolboxes` first; if MCP tools are missing, stop, never fall back to file edits.
-4. After the build, run `pcb-verify` before accepting anything.
+4. Apply `rules/45-schematic-review-layout.md` (uniform fields, horizontal text, review structure) to every sheet.
+5. Create or update the system overview per `rules/41-system-overview.md`.
+6. After the build, run `pcb-verify` before accepting anything.
 
 ## Drawing style (connected)
 - Parts of one circuit are joined by drawn wires. Same-named local labels inside a block make the circuit look unconnected.
