@@ -1,0 +1,17 @@
+mpn: "MountingHole"
+manufacturer: KiCad stdlib (no MPN)
+package: {name: "mounting hole", code: "M2, 2.2 mm", pins: 0}
+datasheet: {url: "none", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "MountingHole:MountingHole_2.2mm_M2"
+footprint_sha256: "1b38bd9b2279c528f6e6bd4cf43f4aea04facae04f4afb1649dae640330a7178"
+pins: 0
+pitch_mm: 0
+body_mm: [2.2, 2.2]
+land: []
+exposed_pad: {present: false}
+pin1: {description: "no pads, one unplated 2.2 mm hole"}
+pin1_side: {x: mid, y: mid}
+pin_table: {}
+risk: {level: normal, reason: "unplated mechanical hole, no copper"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "2.2 mm hole for M2 screws (stdlib footprint, np_thru_hole pad, no electrical pad). 3D exempt via 3d-exceptions.txt."

@@ -1,0 +1,21 @@
+mpn: "ESD2CAN24DBZRQ1"
+manufacturer: Texas Instruments
+package: {name: "SOT-23-3", code: "DBZ0003A", pins: 3}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/esd2can24-q1.pdf", revision: "SLVSFW5D, revised 2026-03", page_land_pattern: 24, page_pinout: 3}
+kicad_footprint: "Package_TO_SOT_SMD:SOT-23"
+footprint_sha256: "0d88c86c1b6d8c1aae4aa8c09386264c089d4451a128b6ccd63ed253f4300b15"
+pins: 3
+pitch_mm: 0.95
+body_mm: [1.3, 2.9]
+land:
+  - {numbers: [1,2,3], size_mm: [1.3, 0.6], centres: [[-1.05,-0.95],[-1.05,0.95],[1.05,0]]}
+land_position_tol_mm: 0.2
+land_size_tol_mm: 0.2
+exposed_pad: {present: false}
+pin1: {description: "top-left; pin 2 bottom-left; pin 3 (GND) right, centred"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: IO, 2: IO, 3: GND}
+symbol_pin_names: {1: IO1, 2: IO2}
+risk: {level: high, reason: "SOT-23-3, GND on the single right-hand pin"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "TI example land DBZ0003A: pads 1.3 x 0.6, centre spacing 2.1, pitch 0.95; KiCad stdlib 1.475 x 0.6 at 1.875, accepted within 0.2 mm. The datasheet names pins 1 and 2 both IO; the symbol numbers them IO1 and IO2."

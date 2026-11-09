@@ -1,0 +1,20 @@
+mpn: "TCA9535PWR"
+manufacturer: Texas Instruments
+package: {name: "TSSOP-24", code: "PW0024A", pins: 24}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/tca9535.pdf", revision: "SCPS201F, revised 2026-09", page_land_pattern: 43, page_pinout: 3}
+kicad_footprint: "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm"
+footprint_sha256: "951159bb3a87997ba4a4f14affd963324813db13d9426715b2a29388369d74ed"
+pins: 24
+pitch_mm: 0.65
+body_mm: [4.4, 7.8]
+land:
+  - {numbers: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24], size_mm: [1.5, 0.45], dual_row: {row_spacing_mm: 5.8}}
+land_position_tol_mm: 0.1
+land_size_tol_mm: 0.1
+exposed_pad: {present: false}
+pin1: {description: "top-left, left row counting down; last pin top-right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: INT, 2: A1, 3: A2, 4: P00, 5: P01, 6: P02, 7: P03, 8: P04, 9: P05, 10: P06, 11: P07, 12: GND, 13: P10, 14: P11, 15: P12, 16: P13, 17: P14, 18: P15, 19: P16, 20: P17, 21: A0, 22: SCL, 23: SDA, 24: VCC}
+risk: {level: high, reason: "TSSOP-24 PW (4.4 mm) vs DB (5.3 mm) body, 24 pins; RTW/RGE QFN pinout differs"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "TI example land PW0024A: pads 1.5 x 0.45, centre spacing 5.8; KiCad stdlib 1.475 x 0.4 at 5.725, accepted within 0.1 mm. TSSOP pin numbering (not the RTW/RGE QFN numbering) is used."

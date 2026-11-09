@@ -1,0 +1,21 @@
+mpn: "CPC1017NTR"
+manufacturer: Littelfuse (IXYS)
+package: {name: "SOP-4", code: "CPC1017N (4-pin SOP, tape and reel -TR)", pins: 4}
+datasheet: {url: "local: HILM/docs/battery-mock/datasheets/CPC1017N.pdf", revision: "CPC1017N_R13, 2024-06", page_land_pattern: 6, page_pinout: 1}
+kicad_footprint: "Package_SO:SOP-4_3.8x4.1mm_P2.54mm"
+footprint_sha256: "7a3a657d274300e7753eb7fcf92d2245941ae2ace3a0e0ae34bfeb2119ed3374"
+pins: 4
+pitch_mm: 2.54
+body_mm: [4.089, 3.81]
+land:
+  - {numbers: [1,2,3,4], size_mm: [1.54, 0.6], centres: [[-2.695,-1.27],[-2.695,1.27],[2.695,1.27],[2.695,-1.27]]}
+land_position_tol_mm: 0.1
+land_size_tol_mm: 0.15
+exposed_pad: {present: false}
+pin1: {description: "top-left; 2 bottom-left; 3 bottom-right; 4 top-right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: A, 2: K, 3: OUTB, 4: OUTA}
+symbol_pin_names: {1: "", 2: "", 3: "", 4: ""}
+risk: {level: high, reason: "SOP-4 optocoupler relay, input and output isolation, nonstandard footprint name"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "Land drawing on p6: pads 0.60 wide x 1.54 long, pitch 2.54, 3.85 between the two pad rows read as the gap between inner pad edges (consistent with the 6.096 lead span; centre spacing 5.39). Not machine-readable text, read from the rendered drawing. KiCad stdlib 1.45 x 0.55 at centre spacing 5.5. Symbol leaves pins unnamed; pin 1 anode, 2 cathode, 3 OUTB, 4 OUTA from the p1 pin configuration."

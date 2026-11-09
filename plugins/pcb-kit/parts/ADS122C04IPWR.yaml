@@ -1,0 +1,20 @@
+mpn: "ADS122C04IPWR"
+manufacturer: Texas Instruments
+package: {name: "TSSOP-16", code: "PW0016A", pins: 16}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/ads122c04.pdf", revision: "SBAS751B, revised 2018-10", page_land_pattern: 76, page_pinout: 3}
+kicad_footprint: "Package_SO:TSSOP-16_4.4x5mm_P0.65mm"
+footprint_sha256: "fbac79fc5f310754726589d67071a422c429216f843ecd6013bbe2e6a49e7064"
+pins: 16
+pitch_mm: 0.65
+body_mm: [4.4, 5.0]
+land:
+  - {numbers: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], size_mm: [1.5, 0.45], dual_row: {row_spacing_mm: 5.8}}
+land_position_tol_mm: 0.1
+land_size_tol_mm: 0.1
+exposed_pad: {present: false}
+pin1: {description: "top-left, left row counting down; last pin top-right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: A0, 2: A1, 3: RESET, 4: DGND, 5: AVSS, 6: AIN3, 7: AIN2, 8: REFN, 9: REFP, 10: AIN1, 11: AIN0, 12: AVDD, 13: DVDD, 14: DRDY, 15: SDA, 16: SCL}
+risk: {level: normal, reason: "TSSOP-16 PW, 0.65 mm pitch, no exposed pad"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "TI example land PW0016A: pads 1.5 x 0.45, centre spacing 5.8; KiCad stdlib 1.475 x 0.4 at 5.725, accepted within 0.1 mm. The RTE (WQFN) variant of the same datasheet has a different numbering; this record is the PW package only."

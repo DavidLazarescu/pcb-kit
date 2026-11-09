@@ -1,0 +1,21 @@
+mpn: "MCP1792T-5002H/DB"
+manufacturer: Microchip
+package: {name: "SOT-223-3", code: "DB (C04-032B)", pins: 3}
+datasheet: {url: "https://ww1.microchip.com/downloads/en/DeviceDoc/MCP1792-3-High-Voltage-LDO-DS20006229D.pdf", revision: "DS20006229D, 2022-01", page_land_pattern: 21, page_pinout: 12}
+kicad_footprint: "Package_TO_SOT_SMD:SOT-223-3_TabPin2"
+footprint_sha256: "8ae5f03e2c16377abed15e51af6864e23a934e1457b97fb7ea930e17fa99f11d"
+pins: 3
+pitch_mm: 2.3
+body_mm: [3.5, 6.5]
+land:
+  - {numbers: [1,2,3], size_mm: [1.9, 0.95], centres: [[-3.05,-2.3],[-3.05,0],[-3.05,2.3]]}
+land_position_tol_mm: 0.15
+land_size_tol_mm: 0.6
+exposed_pad: {present: true, pad_number: 2, centre_mm: [3.05, 0], size_mm: [1.9, 3.25], must_connect: GND}
+pin1: {description: "left column, top; tab on the right (pad 2, GND)"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: VIN, 2: GND, 3: VOUT}
+symbol_pin_names: {1: VI, 3: VO}
+risk: {level: high, reason: "SOT-223 with tab, pin order is VIN-GND-VOUT"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "Same package and pinout as MCP1792T-3302H/DB (record copied, output voltage differs only). Datasheet land pad dimensions are MAX values (X1 0.95, X2 3.25, Y 1.90), C = 6.10 tab-to-lead spacing; stdlib pads are larger, tolerance 0.6 mm."

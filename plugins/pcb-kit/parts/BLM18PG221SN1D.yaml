@@ -1,0 +1,21 @@
+mpn: "BLM18PG221SN1D"
+manufacturer: Murata
+package: {name: "chip 0603", code: "L_0603_1608Metric", pins: 2}
+datasheet: {url: "none (manufacturer datasheet not fetched)", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "Inductor_SMD:L_0603_1608Metric"
+footprint_sha256: "a2a9c562208496756e22f3ab19e0bd6db2341d14da92e7c767d5eafd1bb45d38"
+pins: 2
+pitch_mm: 1.575
+body_mm: [1.6, 0.8]
+land:
+  - {numbers: [1,2], size_mm: [0.875, 0.95], centres: [[-0.7875,0],[0.7875,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "left pad; no polarity"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "1", 2: "2"}
+symbol_pin_names: {1: "", 2: ""}
+risk: {level: normal, reason: "non-polar two-terminal chip part"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "220 ohm ferrite bead, 0603 (EIA), non-polar. Package size taken from the MPN size code; land is the KiCad stdlib/IPC land (no manufacturer land checked)."

@@ -1,0 +1,21 @@
+mpn: "CL21B475KAFNNNE"
+manufacturer: Samsung Electro-Mechanics
+package: {name: "chip 0805", code: "C_0805_2012Metric", pins: 2}
+datasheet: {url: "none (manufacturer datasheet not fetched)", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "Capacitor_SMD:C_0805_2012Metric"
+footprint_sha256: "62775a51fe74ba7f1b572de327bdbd3fc92582721b2abcaa47787865590d89cb"
+pins: 2
+pitch_mm: 1.9
+body_mm: [2.0, 1.25]
+land:
+  - {numbers: [1,2], size_mm: [1.0, 1.45], centres: [[-0.95,0],[0.95,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "left pad; no polarity"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "1", 2: "2"}
+symbol_pin_names: {1: "", 2: ""}
+risk: {level: normal, reason: "non-polar two-terminal chip part"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "4.7 uF MLCC, 0805. Package size taken from the MPN size code; land is the KiCad stdlib/IPC land (no manufacturer land checked)."

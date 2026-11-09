@@ -1,0 +1,20 @@
+mpn: "DAC80502DRXT"
+manufacturer: Texas Instruments
+package: {name: "WSON-10", code: "DRX0010A", pins: 10}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/dac80502.pdf", revision: "SBAS793A, revised 2020-04", page_land_pattern: 45, page_pinout: 3}
+kicad_footprint: "Package_SON:Texas_DRX_WSON-10_2.5x2.5mm_P0.5mm"
+footprint_sha256: "66c656075daa62a7cf0c08c3414117abbd65db6a990bcfaec5044797984bd379"
+pins: 10
+pitch_mm: 0.5
+body_mm: [2.5, 2.5]
+land:
+  - {numbers: [1,2,3,4,5,6,7,8,9,10], size_mm: [1.2, 0.24], dual_row: {row_spacing_mm: 1.7}}
+land_position_tol_mm: 0.1
+land_size_tol_mm: 0.3
+exposed_pad: {present: false}
+pin1: {description: "top-left, left column counting down; pin 10 top-right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: VDD, 2: VOUTA, 3: RSTSEL, 4: AGND, 5: SPI2C, 6: SCLK/SCL, 7: SYNC/A0, 8: SDIN/SDA, 9: VOUTB, 10: VREFIO}
+risk: {level: high, reason: "no-lead WSON, 0.5 mm pitch, same pinout name family as DAC60501 VSSOP with different numbering"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "TI example land DRX0010A (non-solder-mask-defined): pads 1.2 x 0.24, centre spacing 1.7, pitch 0.5, no exposed pad drawn; KiCad stdlib 1.475 x 0.25 at 1.775, accepted within 0.1 mm position and 0.3 mm size. The DRX package has no thermal pad."
