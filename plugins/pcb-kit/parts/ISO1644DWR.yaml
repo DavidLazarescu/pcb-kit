@@ -1,0 +1,20 @@
+mpn: ISO1644DWR
+manufacturer: Texas Instruments
+package: {name: "SOIC-16W", code: "DW0016B", pins: 16}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/iso1644.pdf", revision: "SLLSFC2D, revised 2021-09", page_land_pattern: 53, page_pinout: 5}
+kicad_footprint: "Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm"
+footprint_sha256: "07aa02ced9fcdc61d7c6bb5ea1b86803731041e9e171db91a991c3daa7817383"
+pins: 16
+pitch_mm: 1.27
+body_mm: [7.5, 10.3]
+land:
+  - {numbers: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], size_mm: [2.0, 0.6], dual_row: {row_spacing_mm: 9.3}}
+land_position_tol_mm: 0.1
+land_size_tol_mm: 0.1
+exposed_pad: {present: false}
+pin1: {description: "top-left, left row counting down, side 1 on the left"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: VCC1, 2: GND1, 3: SDA1, 4: INA, 5: INB, 6: SCL1, 7: OUTC, 8: GND1, 9: GND2, 10: INC, 11: SCL2, 12: OUTB, 13: OUTA, 14: SDA2, 15: GND2, 16: VCC2}
+risk: {level: high, reason: "wide body SOIC (DW) vs narrow, isolator with side 1 / side 2 pin asymmetry"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "Land is the IPC-7351 nominal (9.3 mm centre spacing, 7.3 mm clearance); the HV option is 9.75 mm. Pin table is Table 5-3 (ISO1644, 16-DW)."

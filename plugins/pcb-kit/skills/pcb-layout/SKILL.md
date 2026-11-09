@@ -40,3 +40,6 @@ Status: thin, to be extended after the first layout. Invoke `konnect` and `kicad
 - Editing the board in the GUI while an agent works.
 - Isolation gap violated by pours, vias or test points.
 - Return paths crossing the island split.
+
+## Also read
+- `${CLAUDE_PLUGIN_ROOT}/rules/25-footprint-verification.md` (footprint records, fpcheck, 3D models, L1-L3)

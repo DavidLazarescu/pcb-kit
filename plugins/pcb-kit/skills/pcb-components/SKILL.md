@@ -44,3 +44,6 @@ BOM, `datasheets/`, registry update, removed/kept table.
 - Summaries mis-attribute stock to substitutes; trust only the detail page.
 - Stock goes stale; re-check on the order day.
 - Distributor parametric fields can be wrong (heat-sink Rth).
+
+## Also read
+- `${CLAUDE_PLUGIN_ROOT}/rules/25-footprint-verification.md` (footprint records, fpcheck, 3D models, L1-L3)

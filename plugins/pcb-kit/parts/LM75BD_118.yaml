@@ -1,0 +1,21 @@
+mpn: "LM75BD,118"
+manufacturer: NXP
+package: {name: "SO8", code: "SOT96-1", pins: 8}
+datasheet: {url: "https://www.nxp.com/docs/en/data-sheet/LM75B.pdf", revision: "Rev. 6.1, 2015-02-06", page_land_pattern: 30, page_pinout: 4}
+kicad_footprint: "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+footprint_sha256: "074ecb2092b24fa4b4b9cdd7c926fc587b0d7d6d21e7341e57935fd42d36894f"
+pins: 8
+pitch_mm: 1.27
+body_mm: [3.9, 4.9]
+land:
+  - {numbers: [1,2,3,4,5,6,7,8], size_mm: [1.3, 0.6], dual_row: {row_spacing_mm: 5.3}}
+land_position_tol_mm: 0.4
+land_size_tol_mm: 0.7
+exposed_pad: {present: false}
+pin1: {description: "top-left, left row, counting down"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: SDA, 2: SCL, 3: OS, 4: GND, 5: A2, 6: A1, 7: A0, 8: VCC}
+symbol_pin_names: {3: "O.S.", 8: "+Vs"}
+risk: {level: normal, reason: "SO8 narrow body, standard"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "NXP reflow land is 1.30 x 0.60 at 5.30 spacing; KiCad stdlib IPC land is longer (outer edge about equal), hence the wide tolerances. Symbol names O.S. and +Vs are the same pins as OS and VCC."

@@ -14,14 +14,14 @@ Phase skills each add what the generic Konnect skills (`konnect`, `kicad-schemat
 |---|---|---|
 | 0 | `pcb-new-project` | Folders, project CLAUDE.md, `pcb-rules/` exist; kickoff questions asked |
 | 10 | `pcb-requirements` | Requirements table complete, power-on state defined, no blocking open question |
-| 20 | `pcb-components` | Every part: exact MPN, stock + date, datasheet saved, footprint checked, trap list done |
+| 20 | `pcb-components` | Every part: exact MPN, stock + date, datasheet saved, footprint checked (`rules/25`: every part has a verified record or is listed as pending), trap list done |
 | 30 | `pcb-calculations` | Every block calculated and documented, thermal and SOA done, critical loop simulated across corners |
 | 40 | `pcb-schematic-spec` | Spec lists every part, pin and net; reviewed against DESIGN |
 | 50 | `pcb-schematic-build` | Sheets built by Konnect, repo committed beforehand, style and review-layout rules met (`rules/45`), system overview created or updated (`rules/41`) |
 | 60 | `pcb-verify` | Netlist matches spec, ERC reviewed, BOM fields complete, baseline saved, sheets review-ready, overview current, independent check done |
 | 70 | `pcb-layout-plan` | Written routing plan, approved by the user |
 | 80 | `pcb-layout` | Routed per plan, DRC 0, independent review done |
-| 90 | `pcb-manufacture` | Stock re-checked, outputs generated, first-board bench tests listed |
+| 90 | `pcb-manufacture` | Stock re-checked, `tools/bom_fpcheck.sh` all PASS (records, pin names, 3D models) and L3 sign-off for high-risk parts (`rules/25`), outputs generated, first-board bench tests listed |
 
 Do not skip a gate. If a later phase reveals an earlier error, go back, fix the document first, then the design.
 

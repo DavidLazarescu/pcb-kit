@@ -43,3 +43,6 @@ Completed `DESIGN.md` (BOM, calculations, decisions), simulation results.
 - Specs that describe a circuit loosely: agents invent connections.
 - Spec drift from `DESIGN.md`: update both together.
 - Missing no-connect decisions on unused pins.
+
+## Also read
+- `${CLAUDE_PLUGIN_ROOT}/rules/25-footprint-verification.md` (footprint records, fpcheck, 3D models, L1-L3)

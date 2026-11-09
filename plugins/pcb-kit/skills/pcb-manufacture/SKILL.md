@@ -40,3 +40,6 @@ Verified schematic, DRC-clean board, BOM.
 ## Pitfalls
 - Planning-day stock numbers reused on the order day.
 - Missing packaging suffix in the order MPN.
+
+## Also read
+- `${CLAUDE_PLUGIN_ROOT}/rules/25-footprint-verification.md` (footprint records, fpcheck, 3D models, L1-L3)

@@ -1,0 +1,21 @@
+mpn: INA226AIDGST
+manufacturer: Texas Instruments
+package: {name: "VSSOP-10", code: "DGS0010A", pins: 10}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/ina226.pdf", revision: "SBOS547C, revised 2026-08", page_land_pattern: 39, page_pinout: 3}
+kicad_footprint: "Package_SO:MSOP-10_3x3mm_P0.5mm"
+footprint_sha256: "c179dbee33613027667b07b4dba02648f193fc65f63616c9d73d6f1162c6bb9d"
+pins: 10
+pitch_mm: 0.5
+body_mm: [3.0, 3.0]
+land:
+  - {numbers: [1,2,3,4,5,6,7,8,9,10], size_mm: [1.45, 0.3], dual_row: {row_spacing_mm: 4.4}}
+land_position_tol_mm: 0.25
+land_size_tol_mm: 0.06
+exposed_pad: {present: false}
+pin1: {description: "top-left, left row, counting down; pin 10 top-right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: A1, 2: A0, 3: Alert, 4: SDA, 5: SCL, 6: VS, 7: GND, 8: VBUS, 9: "IN-", 10: "IN+"}
+symbol_pin_names: {8: Vbus, 9: "Vin-", 10: "Vin+"}
+risk: {level: high, reason: "VSSOP DGS vs MSOP naming, 0.5 mm pitch"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "TI land is an example (centre spacing 4.4); KiCad MSOP-10 stdlib uses 4.2 (IPC variant), accepted within 0.25 mm. Datasheet is body 3.0 x 4.9 max including leads (DGS)."

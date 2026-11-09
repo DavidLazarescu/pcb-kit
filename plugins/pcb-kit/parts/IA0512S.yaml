@@ -1,0 +1,20 @@
+mpn: IA0512S
+manufacturer: XP Power
+package: {name: "SIP7", code: "SIP", pins: 5}
+datasheet: {url: "https://www.xppower.com/product/ia-series", revision: "2025-05-23", page_land_pattern: 4, page_pinout: 4}
+kicad_footprint: "Converter_DCDC:Converter_DCDC_XP_POWER-IAxxxxS_THT"
+footprint_sha256: "fdf61da8907ad0f551db5bac3afe47b88e1d107b6e33da7de2fc6c953e5cd1df"
+pins: 5
+pitch_mm: 2.54
+body_mm: [19.3, 10.1]
+land:
+  - {numbers: [1,2,4,5,6], size_mm: null, centres: [[0,0],[0,2.54],[0,7.62],[0,10.16],[0,12.7]]}
+land_position_tol_mm: 0.05
+exposed_pad: {present: false}
+drill_mm: 0.8
+pin1: {description: "end of the row; pins 3 and 7 are absent (SIP7 with two missing pins)"}
+pin1_side: {x: mid, y: neg}
+pin_table: {1: "+Vin", 2: "-Vin", 4: "-Vout", 5: "0V", 6: "+Vout"}
+risk: {level: high, reason: "THT module, missing pins, isolation gap"}
+verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
+notes: "Datasheet: pin 5 is Common (symbol calls it 0V), recommended hole 0.8 mm. Pad diameter not given."
