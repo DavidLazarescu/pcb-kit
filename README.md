@@ -47,7 +47,7 @@ Requirements: KiCad 10 with `kicad-cli`, the Konnect MCP server registered in Cl
 /plugin update pcb-kit@pcb-kit
 ```
 
-Bump `version` in `plugins/pcb-kit/.claude-plugin/plugin.json` and add a line to `CHANGELOG.md` with every change, or clients will not see the update.
+`plugin.json` has no pinned version, so every pushed commit is a new version. Add a line to `CHANGELOG.md` with every change; clients pick it up with `/plugin marketplace update pcb-kit` (or automatically with auto-update on).
 
 ## Rule layering
 
@@ -62,7 +62,7 @@ Start a board with `pcb-new-project`, then follow `pcb-workflow`. Resume by read
 1. Decide scope. Applies to every board: edit `plugins/pcb-kit/rules/<phase>.md` (or `00-house-standards.md`). Applies to one project: edit that project's `pcb-rules/<phase>.md`.
 2. Write it as one imperative line, with the reason if it is not obvious. Put detail in a skill's `reference/` file.
 3. If a skill's steps or gate change too, edit that `SKILL.md`.
-4. Add a line to `CHANGELOG.md`, bump the plugin version, commit.
+4. Add a line to `CHANGELOG.md`, commit and push.
 5. A correction from a review or the bench becomes a rule the same day.
 
 ## Hook limits
