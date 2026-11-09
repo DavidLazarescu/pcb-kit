@@ -8,3 +8,4 @@
 - 2026-11-09: footprint verification: rule 25 (record, fpcheck, second source, 3D model, paper print), `parts/` registry, `fpcheck.py`, `fpdiff.py`, `bom_fpcheck.sh` (PASS/FAIL/NO-RECORD/MISSING-3D), gates in phases 20 and 90.
 - 2026-11-09: fpcheck: unnamed symbol pins (~ / empty) compare equal; records ISO1644/OPA187/74LVC1G04 accept stdlib pin naming. Negative tests (wrong pin count, SC-70 vs SOT-23, TSSOP vs SOIC, narrow vs wide SOIC, SOT-223 tab pin 4, TO-220 vs TO-247) all FAIL as expected.
 - 2026-11-09: rule 25: blind-test results and self-built footprint checklist.
+- 2026-11-09: footprint intake with the user (rule 25, workflow gate 65), tools/fp_requests.py builds the download list.

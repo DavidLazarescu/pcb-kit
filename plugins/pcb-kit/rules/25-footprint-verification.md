@@ -43,3 +43,22 @@ Consequences:
   unless the datasheet gives a land pattern; courtyard 0.25 mm; fab outline = body.
 - `fpdiff` compares pad sets: if pad counts differ, fix numbering first, then compare geometry again
   (centroid normalisation is skewed by extra pads).
+
+## Footprint intake with the user (before layout and on every additive iteration)
+1. **Request list.** Before the layout starts, and whenever parts are added later, run
+   `bom_fpcheck.sh` and `fp_requests.py --generic-ok` and give the user `FOOTPRINT_REQUESTS.md`:
+   every part without a verified record, with a failing check or without a 3D model, and what is needed
+   (datasheet, manufacturer footprint/zip, STEP). Footprints the stdlib already has only need the datasheet.
+2. **User downloads** into `<project>/libs/downloads/<MPN>/`.
+3. **Claude imports and checks every download:** footprint into the project library
+   `<project>/libs/<board>.pretty` (Konnect), STEP into `<project>/3dmodels/`; make the part record from
+   the datasheet; `fpcheck` (geometry, numbering, pin names, 3D present); `fpdiff` against the stdlib
+   footprint when one exists; 3D model aligned with the pads.
+4. **Verdict per part:** ACCEPTED → use it, record `verified.layers` updated. REJECTED → tell the user in
+   that step with the reason (e.g. "tab numbered 4, datasheet ties it to pin 2", "pitch 0.65 vs 0.5")
+   and what would fix it (other source, or a self-built footprint per the checklist). Never use a
+   rejected footprint and never fix a download silently.
+5. Standard chip passives (R/C/L/fuse 0402…2512 on stdlib footprints) are covered by generic chip
+   records; LEDs and diodes still need their polarity (cathode pad) checked per MPN.
+6. The layout phase may not start while the list has open entries, unless the user accepts an entry as
+   pending in writing (then it blocks the order instead).
