@@ -27,3 +27,11 @@ follow it sheet by sheet without zooming around or turning their head.
 - Repeated structures (channels) are drawn identically, with the same relative placement.
 - Before handing over: render every sheet, look at it as a reviewer at 100 % zoom, and fix anything
   that is crowded, misaligned or inconsistent. Overlap checks alone are not enough.
+
+## Symbols: clean and simple
+- Symbols are drawn for understanding, not for completeness: clean outline, pins grouped by function
+  (inputs left, outputs right, supplies top, grounds bottom), short readable pin names, no decorative
+  detail. Find the middle: as simple as possible while every pin stays unambiguous.
+- Prefer the KiCad stdlib symbol (or a copy of it) over a hand-drawn one; if a custom symbol is
+  needed, model it on the stdlib style of the same device class (op-amp triangle, regulator box, …).
+- Render every custom symbol once on its own and check that pin names and numbers do not overlap.
