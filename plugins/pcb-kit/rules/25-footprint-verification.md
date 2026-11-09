@@ -46,7 +46,9 @@ Consequences:
 
 ## Footprint intake with the user (before layout and on every additive iteration)
 1. **Request list.** Before the layout starts, and whenever parts are added later, run
-   `bom_fpcheck.sh` and `fp_requests.py --generic-ok` and give the user `FOOTPRINT_REQUESTS.md`:
+   `bom_fpcheck.sh` and `fp_requests.py --generic-ok` and give the user the list **in the chat** (no file):
+   one line per part with the exact MPN to type into DigiKey; the user downloads the KiCad CAD package
+   (footprint, symbol, STEP) from the DigiKey product page. Content of the list:
    every part without a verified record, with a failing check or without a 3D model, and what is needed
    (datasheet, manufacturer footprint/zip, STEP). Footprints the stdlib already has only need the datasheet.
 2. **User downloads** into `<project>/libs/downloads/<MPN>/`.
