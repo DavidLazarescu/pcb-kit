@@ -1,0 +1,14 @@
+{
+  "name": "pcb-kit",
+  "owner": {
+    "name": "DavidLazarescu"
+  },
+  "plugins": [
+    {
+      "name": "pcb-kit",
+      "source": "./plugins/pcb-kit",
+      "description": "KiCad 10 + Konnect PCB design workflow: skills, rules, agents, templates, tools."
+    }
+  ],
+  "description": "KiCad 10 + Konnect PCB design workflow plugin"
+}
