@@ -25,8 +25,15 @@ follow it sheet by sheet without zooming around or turning their head.
   grounds down; blocks separated by clear space (≥ 10 mm).
 - The calculation note sits next to its block, aligned with it, short lines (≤ ~100 characters).
 - Repeated structures (channels) are drawn identically, with the same relative placement.
-- Before handing over: render every sheet, look at it as a reviewer at 100 % zoom, and fix anything
-  that is crowded, misaligned or inconsistent. Overlap checks alone are not enough.
+- Before handing over: render every sheet at 4200 px width, cut it into 12 tiles
+  (`magick full.png -crop 4x3@ +repage tile_%02d.png`), read every tile and log each defect; fix and
+  repeat until a full round finds none. An overview-zoom look misses overlaps (a reworked sheet passed
+  that way with overlapping pin names, colliding values and parts at the frame). Overlap tools alone are
+  not enough either.
+- Defects: text touching text, wires, pins or bodies; pin names overlapping inside a symbol; anything
+  within 5 mm of the frame or in the title block; fields closer to another part than to their own;
+  wire crossings that read as junctions; op-amp/comparator inputs without + and -.
+- A builder's own "checked" is not acceptance: a different agent or the user reviews the tiles.
 
 ## Symbols: clean and simple
 - Symbols are drawn for understanding, not for completeness: clean outline, pins grouped by function

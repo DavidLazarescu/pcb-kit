@@ -12,3 +12,4 @@
 - 2026-11-09: rule 25 lessons from the first intake (download pad numbering, STEP length check and scaling, ask for datasheets together with CAD).
 - 2026-11-09: rule 70: JLCPCB default stackup, deviations discussed with the user, impedance and current sizing with that stackup.
 - 2026-11-09: 25 part records from the cell-voltage emulator board (TI ICs, CPC1017N, MCP1792 5 V, passives with stdlib land noted, MountingHole).
+- 2026-11-09: rule 45: tile-level render review (12 tiles at 4200 px) with a defect list, defect criteria, review by someone other than the builder; overview-zoom checks let overlaps and a broken custom op-amp symbol through.
