@@ -2,8 +2,8 @@ mpn: IXTH80N075L2
 manufacturer: IXYS (Littelfuse)
 package: {name: "TO-247", code: "TO-247 (IXTH)", pins: 3}
 datasheet: {url: "https://www.littelfuse.com/products/power-semiconductors-and-modules/discrete-mosfets/", revision: "DS100556 (8/13)", page_land_pattern: 6, page_pinout: 6}
-kicad_footprint: "Package_TO_SOT_THT:TO-247-3_Vertical"
-footprint_sha256: "85188fff7a3f8a2b7b94a4c2630528f0b2549d1b2b8bffed74bdff787cdf6fe8"
+kicad_footprint: "HIL_Daughter_Load:TO-247-3_Vertical"
+footprint_sha256: "e8211bfbbf683d9301686f3481df651336cc5a655c6949cbb301d0ac95306dc0"
 pins: 3
 pitch_mm: 5.45
 body_mm: [16.0, 21.0]
@@ -11,10 +11,10 @@ land:
   - {numbers: [1,2,3], size_mm: null, centres: [[0,0],[5.45,0],[10.9,0]]}
 land_position_tol_mm: 0.3
 exposed_pad: {present: false}
-drill_mm: 1.61
+drill_mm: 1.8
 pin1: {description: "leftmost lead (gate) looking at the front of the package, leads down"}
 pin1_side: {x: neg, y: mid}
 pin_table: {1: G, 2: D, 3: S}
 risk: {level: high, reason: "THT power MOSFET, lead order G-D-S, drill vs lead cross-section"}
 verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
-notes: "Datasheet gives no land pattern. e = 5.20-5.72 (record 5.45 = e1/2, e1 10.9). Drill 1.61 = diagonal of the worst-case lead section b 1.4 x c 0.8; confirm against the physical part."
+notes: "Datasheet gives no land pattern. e = 5.20-5.72 (record 5.45 = e1/2, e1 10.9). Drill 1.61 = diagonal of the worst-case lead section b 1.4 x c 0.8; confirm against the physical part. Project copy of the stdlib TO-247-3_Vertical with drills 1.8 mm and pads 2.8 x 4.5 (annular ring 0.5 mm in x, was 2.5 wide with drill 1.5)."

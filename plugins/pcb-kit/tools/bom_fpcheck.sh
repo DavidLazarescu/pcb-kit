@@ -27,7 +27,7 @@ for ref, c in comps.items():
         continue
     key = (c["fields"].get("MPN") or c["value"], c["footprint"])
     groups.setdefault(key, []).append(ref)
-opts = ["--project-dir", proj, "--fp-dir", proj] + extra
+opts = ["--project-dir", proj, "--fp-dir", proj, "--fp-dir", os.path.join(proj, "libs")] + extra
 rows, bad = [], 0
 for (mpn, fp), refs in sorted(groups.items(), key=lambda kv: kv[1][0]):
     refs.sort()
