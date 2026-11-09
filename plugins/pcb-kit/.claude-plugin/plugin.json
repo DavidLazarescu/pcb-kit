@@ -1,7 +1,14 @@
 {
   "name": "pcb-kit",
-  "version": "0.1.0",
   "description": "Knowledge base and workflow for designing PCBs in KiCad 10 with the Konnect MCP server: phase skills with gates, rules, agents, templates and verification tools.",
-  "author": { "name": "DavidLazarescu" },
-  "keywords": ["kicad", "pcb", "konnect", "schematic", "hardware"]
+  "author": {
+    "name": "DavidLazarescu"
+  },
+  "keywords": [
+    "kicad",
+    "pcb",
+    "konnect",
+    "schematic",
+    "hardware"
+  ]
 }
