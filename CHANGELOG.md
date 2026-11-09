@@ -10,3 +10,4 @@
 - 2026-11-09: rule 25: blind-test results and self-built footprint checklist.
 - 2026-11-09: footprint intake with the user (rule 25, workflow gate 65), tools/fp_requests.py builds the download list.
 - 2026-11-09: rule 25 lessons from the first intake (download pad numbering, STEP length check and scaling, ask for datasheets together with CAD).
+- 2026-11-09: rule 70: JLCPCB default stackup, deviations discussed with the user, impedance and current sizing with that stackup.
