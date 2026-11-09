@@ -29,3 +29,4 @@
 ## Safety net
 - Commit before any agent rework of a KiCad project. Never rely on a scratch backup.
 - Delegate mechanical lookups (stock, datasheet values) to cheap agents (haiku); keep decisions in the main thread.
+- Stackup: JLCPCB default for the layer count; any deviation only after asking the user (see rules/70-layout-plan.md).
