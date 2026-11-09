@@ -9,3 +9,4 @@
 - 2026-11-09: fpcheck: unnamed symbol pins (~ / empty) compare equal; records ISO1644/OPA187/74LVC1G04 accept stdlib pin naming. Negative tests (wrong pin count, SC-70 vs SOT-23, TSSOP vs SOIC, narrow vs wide SOIC, SOT-223 tab pin 4, TO-220 vs TO-247) all FAIL as expected.
 - 2026-11-09: rule 25: blind-test results and self-built footprint checklist.
 - 2026-11-09: footprint intake with the user (rule 25, workflow gate 65), tools/fp_requests.py builds the download list.
+- 2026-11-09: rule 25 lessons from the first intake (download pad numbering, STEP length check and scaling, ask for datasheets together with CAD).

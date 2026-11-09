@@ -64,3 +64,13 @@ Consequences:
    records; fuses (package sizes vary per series), LEDs and diodes still need their polarity (cathode pad) checked per MPN.
 6. The layout phase may not start while the list has open entries, unless the user accepts an entry as
    pending in writing (then it blocks the order instead).
+
+## Lessons from the first intake (2026-11-09)
+- Downloaded footprints often number pads differently from the KiCad symbol: a test point pad named "TP"
+  instead of "1", connector mounting tabs as "6"/"7" instead of "MP". Both would have left pads
+  unconnected. `fpcheck` with the netlist catches this; never accept a download without it.
+- Measure every downloaded STEP (bounding box from its CARTESIAN_POINTs) before using it: extrusion
+  vendors ship a short profile piece (a heat sink came as 10 mm long instead of 100 mm). A constant
+  profile may be scaled along its extrusion axis in the footprint's 3D settings (e.g. scale z × 10).
+- Manufacturer sites often block automated datasheet downloads; ask the user for the PDFs together with
+  the CAD request (DigiKey product page → "Datenblatt"), not in a second round.
