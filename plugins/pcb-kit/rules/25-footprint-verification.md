@@ -26,3 +26,20 @@ Each footprint references a 3D model that exists. Sources in order: the KiCad 3D
 ## Token economy
 
 A record is made once per MPN: read only the package and pinout pages of the datasheet (`pdftotext -f N -l N`), store the result in the registry, reuse it in later projects. Re-verify only when the footprint hash or the datasheet revision changes. Read the script output only where it says FAIL. Overlays of footprint over drawing are a last resort.
+
+## Self-built footprints: what the blind test showed (2026-11-09)
+Seven footprints were built from datasheets alone and compared with `fpdiff.py` against the KiCad stdlib:
+SOIC-16W exact; VSSOP-10 ×2, SOT-23-5, SOIC-8 within 0.1–0.2 mm (manufacturer land vs IPC nominal,
+both valid); TO-247 pad centres exact (drill 1.9 mm, larger than stdlib's 1.5 mm — the stdlib hole is
+tight for the worst-case lead). **One real error:** SOT-223 tab numbered as pad 4 instead of pad 2,
+which would have left the tab unconnected. Geometry from a datasheet is reliable; numbering conventions
+are where self-built footprints fail. Cost ≈ 15–20k tokens per footprint.
+Consequences:
+- Order of sources stays: stdlib → manufacturer download → self-built.
+- A self-built footprint always gets a record + `fpcheck` (catches extra/missing pads), an `fpdiff`
+  against any second source, and the 1:1 print.
+- Checklist for self-built: tab / exposed pad carries the number of the pin it is tied to; pin 1 at the
+  top left in the default orientation; pad numbers exactly as the datasheet pinout; IPC nominal density
+  unless the datasheet gives a land pattern; courtyard 0.25 mm; fab outline = body.
+- `fpdiff` compares pad sets: if pad counts differ, fix numbering first, then compare geometry again
+  (centroid normalisation is skewed by extra pads).
