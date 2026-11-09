@@ -5,11 +5,11 @@
 
 Every part that is not PASS ends up in the list with what is missing (datasheet/record, footprint,
 3D model) and where the user should put the download. With --generic-ok, standard chip passives
-(R/C/L/fuse 0402…2512 on KiCad stdlib footprints) are listed separately as "covered by a generic
+(R/C/L 0402…2512 on KiCad stdlib footprints) are listed separately as "covered by a generic
 chip record" instead of as downloads.
 """
 import re, sys
-CHIP = re.compile(r"^(R|C|L|Fuse)_(0402|0603|0805|1206|1210|2010|2512)_\d+Metric$")
+CHIP = re.compile(r"^(R|C|L)_(0402|0603|0805|1206|1210|2010|2512)_\d+Metric$")
 rows, cur = [], None
 for line in open(sys.argv[1]):
     m = re.match(r"^(PASS|FAIL|NO-RECORD(?:\+MISSING-3D)?|MISSING-3D)\s+(\S+)\s+(\S+)\s+(\S+)", line)

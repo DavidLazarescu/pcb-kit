@@ -58,7 +58,7 @@ Consequences:
    that step with the reason (e.g. "tab numbered 4, datasheet ties it to pin 2", "pitch 0.65 vs 0.5")
    and what would fix it (other source, or a self-built footprint per the checklist). Never use a
    rejected footprint and never fix a download silently.
-5. Standard chip passives (R/C/L/fuse 0402…2512 on stdlib footprints) are covered by generic chip
-   records; LEDs and diodes still need their polarity (cathode pad) checked per MPN.
+5. Standard chip passives (R/C/L 0402…2512 on stdlib footprints) are covered by generic chip
+   records; fuses (package sizes vary per series), LEDs and diodes still need their polarity (cathode pad) checked per MPN.
 6. The layout phase may not start while the list has open entries, unless the user accepts an entry as
    pending in writing (then it blocks the order instead).
