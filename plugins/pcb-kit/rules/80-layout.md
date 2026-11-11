@@ -24,3 +24,18 @@
 - **Checkpoint C** complete: DRC 0, unconnected 0, netlist matches, 3D top/bottom, independent review with
   the checklist in `references/layout-best-practice.md` §8, then fab outputs only after owner approval.
 - Placement revisit gate: if routing congests one region, move parts instead of forcing routes.
+
+## Konnect/KiCad pitfalls found in the first layout (2026-11-11)
+- Netclasses written with `create_netclass` go into `.kicad_pro`; an open PCB editor overwrites that file on
+  every save. Set netclasses with KiCad closed (or in Board Setup), never while Konnect saves the board.
+- Footprints placed by Konnect (`update_pcb_from_schematic`) lose `net_tie_pad_groups`, so net ties show
+  clearance errors, and every footprint reports `lib_footprint_mismatch`. Fix in the GUI: Tools → Update
+  Footprints from Library (all), then save. Konnect's own library refresh refuses net ties.
+- A net tie must not overlap the resistor pad (DRC "shorting items"); place it 0.25 mm off the pad's inner
+  edge and join it with a short track that starts at the inner edge.
+- Custom rules go into `<board>.kicad_dru` (plain text, Board Setup → Custom Rules). Prove a new rule is
+  active by tightening it once and seeing the expected violation, then set it back.
+- `kicad-cli pcb render` may show no 3D models; judge orientation from the STEP geometry (colour of
+  faces) and the footprint silk marks, and let the owner check in the 3D viewer (Alt+3).
+- Courtyards of parts that must touch (a power package against its heat sink) are drawn to the real body,
+  so DRC stays clean without exclusions.
