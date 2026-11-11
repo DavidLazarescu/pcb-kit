@@ -12,12 +12,17 @@ Before starting, read in this order. Later layers override earlier ones. State c
 
 # Layout plan
 
-Status: thin, to be extended after the first layout. Template: `${CLAUDE_PLUGIN_ROOT}/templates/ROUTING_PLAN.md`.
+Status: first full use 2026-11 (isolated linear load, 2 layers); extend after each layout. Template: `${CLAUDE_PLUGIN_ROOT}/templates/ROUTING_PLAN.md`.
 
 ## Inputs
 Verified schematic, requirements (size, connectors, isolation), calculations (currents, thermal).
 
 ## Steps
+0. Research (two agents in parallel, Sonnet, medium effort, write to scratch files): (a) re-check
+   `${CLAUDE_PLUGIN_ROOT}/references/layout-best-practice.md` only where the fab page or a rule may have
+   changed; (b) per-part layout rules from every datasheet's layout section and app notes, with pages and
+   a critical-net table. Verify (b)'s pin numbers against the netlist. Ask the owner the mechanical
+   questions (mounting, size, connector edges) meanwhile.
 1. Read the rule layers above.
 2. Board: outline, corner radius, mounting holes (none inside an isolation gap), connector edges.
 3. Stackup: layer count and role per layer. Typical 4-layer: L1 parts and short signals, L2 solid ground (split per island), L3 supply pours, L4 signals and ground fill.
@@ -29,7 +34,8 @@ Verified schematic, requirements (size, connectors, isolation), calculations (cu
 9. High-current and thermal: copper width for current, pad-to-sink copper, sensor placement at the heat path.
 10. Order of work (see `pcb-layout`) and verification: DRC 0 plus independent review.
 11. Name net classes for named nets via Konnect design rules.
-12. Get user approval of the plan.
+12. List the schematic changes the layout needs (net ties, mechanical parts) for approval.
+13. Get user approval of the plan.
 
 ## Gate (done when)
 - [ ] Plan covers stackup, ground/return, isolation, groups, critical nets, order, verification

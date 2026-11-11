@@ -25,3 +25,37 @@ No blind autorouting at any point.
   the routing plan with the calculated value and the source.
 - High-current traces are sized for the default copper weight (IPC-2152 with the stated temperature
   rise); if the default copper is not enough, that is a discussion with the user, not a silent change.
+
+## Process and content (extended 2026-11-11, first real plan; see `references/layout-best-practice.md`)
+Research before writing the plan:
+- General practice and fab limits: `references/layout-best-practice.md` (sources per rule; re-read the fab's
+  capability page on the day and note the date).
+- Per part: one research agent reads the **Layout / Layout Guidelines / Layout Example** section of every
+  IC and power-part datasheet plus the relevant app notes and returns placement, routing, decoupling,
+  thermal and keep-out rules with page numbers, and a critical-net table. Verify its pin numbers against
+  the netlist; research agents get pinouts wrong.
+
+The plan contains, in this order (template `templates/ROUTING_PLAN.md`):
+0. Owner decisions (mounting, size, connector edges, layers).
+1. **Schematic changes needed before layout**, for approval: e.g. Kelvin sense pairs as their own nets
+   via `NetTie_2` at the sense resistor pads (makes DRC enforce the 4-wire connection); mechanical parts
+   (heat sink, brackets) as real BOM parts with their footprint and STEP instead of loose holes.
+2. Outline, mounting holes, stackup (JLC default, rule above), fab limits with date, our defaults.
+   On a board with an isolation barrier the board mounting holes are **non-plated** with a copper
+   keep-out, so metal standoffs cannot bridge the grounds.
+3. Net classes table and custom DRC rules (`.kicad_dru`), e.g. barrier clearance between net groups.
+4. Ground and return concept: one quiet plane per island; high-current returns on their own copper,
+   joined to the quiet plane at **one named star point**; keep-outs so THT pins of the high-current path
+   cannot touch the quiet plane; no general fill on a layer that carries a same-net power strip.
+5. Isolation barrier: band width from the narrowest crossing part's pad gap and the working voltage,
+   only rated parts cross, nothing else in the band, silk marking, the rating actually documented.
+6. Floor plan (ASCII, top view, coordinates) following the schematic signal flow. **Check the
+   orientation-defining parts first** (power package tab side, connector pin 1) in the footprint/3D,
+   because they decide which side the gate, source and sense circuits land on.
+7. Placement groups in order (mechanical → barrier → power cell → control loop → set point →
+   readback → supplies → indicators/test points).
+8. Critical-net table: every net from the design notes and the per-part research with rule and source.
+   Prefer high-current paths that stay on one layer between THT pads (no vias), and route the sensitive
+   net across a high-current path on the opposite layer.
+9. Order of work with checkpoints A (placement), B (critical nets), C (complete) — see rule 80.
+10. Assembly notes that come out of the layout (torque, order of soldering and screwing).

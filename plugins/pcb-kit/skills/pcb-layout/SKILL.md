@@ -12,7 +12,7 @@ Before starting, read in this order. Later layers override earlier ones. State c
 
 # Layout
 
-Status: thin, to be extended after the first layout. Invoke `konnect` and `kicad-pcb` first.
+Status: first full use 2026-11; extend after each layout. Gates and checkpoints: rule 80. Invoke `konnect` and `kicad-pcb` first.
 
 ## Inputs
 `ROUTING_PLAN.md`, verified schematic.
@@ -26,7 +26,7 @@ Status: thin, to be extended after the first layout. Invoke `konnect` and `kicad
 6. Route critical nets by hand with Konnect track and via tools; check each against its plan rule after routing.
 7. Route the rest by hand: consistent widths, 45 degree corners, no acute angles, no stubs, parallel buses aligned, few vias, tidy fanouts, stitching vias.
 8. Silkscreen: connector pin labels, indicator labels, barrier marking, board name, version, date.
-9. DRC 0. Independent review (`kicad-design-review-agent` or a fresh agent) against the plan.
+9. Checkpoints A/B/C (rule 80): every gate is a `kicad-cli` result, never an agent's claim. DRC 0, unconnected 0, independent review (`kicad-design-review-agent` or a fresh agent) against the plan and the checklist in `${CLAUDE_PLUGIN_ROOT}/references/layout-best-practice.md` §8.
 10. Freerouting only as a reviewed draft for non-critical leftovers.
 
 ## Gate (done when)
