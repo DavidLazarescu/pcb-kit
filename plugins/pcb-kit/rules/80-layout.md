@@ -47,6 +47,7 @@
 - Reference text 1.0 mm / 0.15 mm, 0.8 mm only where 1.0 does not fit, never smaller. Each reference sits closer
   to its own part than to any other and over no pad. Dense rows of passives get labels on one side in a
   consistent order.
+- References and markings must stay readable after assembly: never under a part body (courtyard), heat sink or connector housing.
 - Measure text with the ink box (`GetEffectiveTextShape().BBox()`). `GetBoundingBox()` overstates it by about
   15% in width and 50% in height.
 - Run Update Footprints from Library before placing references, since its dialog can reset text positions.

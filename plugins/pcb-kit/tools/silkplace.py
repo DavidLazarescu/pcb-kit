@@ -2,18 +2,19 @@
 """silkplace: plan reference designator positions on a board and write a KiCad console script.
 
   silkplace.py BOARD OUT_SCRIPT [--overrides JSON] [--hide REF ...] [--size 1.0]
-               [--small 0.8] [--thickness 0.15] [--extras PY] [--ignore-courtyard REF ...]
+               [--small 0.8] [--thickness 0.15] [--extras PY]
 
 The board is loaded with pcbnew in memory and never saved. A reference stays where it is if it
 is clear, otherwise a greedy search looks around the part's courtyard. "Clear" means the text
 ink box (not GetBoundingBox, which overstates it) misses every pad (+0.15 mm), every footprint
 silk graphic (+0.1), every other placed reference (+0.2), keeps 0.5 mm from the board edge,
 stays within 1.0 mm of its own courtyard and is nearer to it than to any other courtyard
-(margin 0.12). The first pass also avoids other courtyards. References that fit nowhere at the
+(margin 0.12). A reference never sits inside any courtyard, its own included, in any pass,
+since bodies, heat sinks and connector housings cover silk after assembly. References that fit nowhere at the
 normal size are retried at the small size; those still unplaced are hidden.
 
 Overrides JSON: {"REF": [x_mm, y_mm, angle_deg, size_mm]}. They are placed first and their
-problems are printed (pad, silk, other reference, not nearest to own part).
+problems are printed (pad, silk, other reference, not nearest to own part, inside a courtyard).
 
 --extras PY: file whose text is inserted into the generated script before P.Refresh(), for
 board text and markings. It runs with `P` (pcbnew), `b` (board) and `F` (ref -> footprint).
@@ -29,8 +30,6 @@ ap.add_argument("board")
 ap.add_argument("out_script")
 ap.add_argument("--overrides")
 ap.add_argument("--hide", nargs="*", default=[], metavar="REF")
-ap.add_argument("--ignore-courtyard", nargs="*", default=[], metavar="REF",
-                help="refs whose courtyard is ignored when judging overlap and nearest part")
 ap.add_argument("--size", type=float, default=1.0)
 ap.add_argument("--small", type=float, default=0.8)
 ap.add_argument("--thickness", type=float, default=0.15)
@@ -38,7 +37,7 @@ ap.add_argument("--extras")
 a = ap.parse_args()
 
 HIDE = set(a.hide)
-SKIP_CRT = set(a.ignore_courtyard) | HIDE
+SKIP_CRT = HIDE  # hidden refs do not compete for 'nearest'; their courtyards still count
 SIZE, SMALL_SIZE, THICK = a.size, a.small, a.thickness
 SMALL_THICK = round(THICK * SMALL_SIZE / SIZE, 3)
 mm = P.FromMM
@@ -105,7 +104,7 @@ def clear(r, bb, placed, use_crt):
         return False
     if any(hit(bb, grow(q, .2)) for o, q in placed.items() if o != r):
         return False
-    if use_crt and any(hit(bb, q) for o, q in crt.items() if o != r and o not in SKIP_CRT):
+    if any(hit(bb, q) for q in crt.values()):
         return False
     return True
 
@@ -138,6 +137,9 @@ for r, (x, y, ang, sz) in OV.items():
         probs.append("ref " + ",".join(over))
     if not own_nearest(r, bb):
         probs.append("not nearest")
+    inside = [o for o, q in crt.items() if hit(bb, q)]
+    if inside:
+        probs.append("inside courtyard " + ",".join(inside))
     if probs:
         OVERRIDE_PROBLEMS.append((r, "; ".join(probs)))
     placed[r] = bb
@@ -173,7 +175,7 @@ def cands(f):
     return [(x, y, ang, math.hypot(x - cx, y - cy) + (0.4 if ang else 0)) for x, y, ang in out]
 
 
-for use_crt in (True, False):
+for use_crt in (True,):
     rest = []
 
     def n_ok(f):
@@ -202,7 +204,7 @@ rest = []
 for f in todo:
     r = f.GetReference()
     best = None
-    for uc in (True, False):
+    for uc in (True,):
         for x, y, ang, s in sorted(cands(f), key=lambda k: k[3]):
             if clear(r, tbox(f.Reference(), x, y, ang), placed, uc):
                 best = (x, y, ang)
@@ -242,10 +244,8 @@ with open(a.out_script, "w") as o:
 
 print("kept", len(placed) - len(result), "moved", len(result), "small", sorted(SMALL),
       "hidden", hidden, "unplaced", unplaced)
-over_crt = sorted((r, v[:3]) for r, v in result.items() if not v[3])
-print("over other courtyards", len(over_crt))
-for r, v in over_crt:
-    print("  over courtyard:", r, v)
+if unplaced:
+    print("HIDDEN, no clear spot even at small size:", unplaced)
 for r, p in OVERRIDE_PROBLEMS:
     print("OVERRIDE", r, p)
 if not OVERRIDE_PROBLEMS:

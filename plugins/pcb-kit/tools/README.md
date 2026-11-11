@@ -7,7 +7,7 @@ Python 3 stdlib plus the `pcbnew` module that ships with KiCad 10 (`import pcbne
 
 | Tool | Does |
 |---|---|
-| `silkplace.py BOARD OUT_SCRIPT [--overrides JSON] [--hide REF ...] [--size 1.0] [--small 0.8] [--thickness 0.15] [--extras PY] [--ignore-courtyard REF ...]` | Plans reference positions on an in-memory copy, prints kept/moved/small/hidden/unplaced and override problems, writes a KiCad scripting-console script |
+| `silkplace.py BOARD OUT_SCRIPT [--overrides JSON] [--hide REF ...] [--size 1.0] [--small 0.8] [--thickness 0.15] [--extras PY]` | Plans reference positions on an in-memory copy, prints kept/moved/small/hidden/unplaced and override problems, writes a KiCad scripting-console script |
 | `silkcopy.py BOARD SCRIPT OUT_BOARD` | Applies that script to an in-memory copy and saves it, copying the project's `.kicad_pro` and `.kicad_dru` next to it |
 | `silkrender.sh BOARD OUT.png` | Renders F.Mask (pads), F.CrtYd and F.SilkS into one PNG (kicad-cli, rsvg-convert, ImageMagick) |
 | `gridcrop.py BOARD PNG OUT.png X0 Y0 X1 Y1` | Crops the PNG to a board-mm window with a 1 mm grid, labels every 2 mm; scale and origin come from the Edge.Cuts box |
