@@ -107,7 +107,7 @@ def check(rec, fp_path, tol, comp=None):
 
     leads = [e for e in exp if len(e) == 5]
     if int(rec["pins"]) != len(set(e[0] for e in leads)):
-        errs.append("record inconsistent: pins=%s but land lists %d" % (rec["pins"], len(leads)))
+        errs.append("record inconsistent: pins=%s but land lists %d distinct pad numbers" % (rec["pins"], len(set(e[0] for e in leads))))
     fnums = set(p["num"] for p in allpads)
     enums = set(e[0] for e in exp)
     if enums - fnums:
@@ -117,12 +117,16 @@ def check(rec, fp_path, tol, comp=None):
 
     # Pair each expected pad with the footprint pad of that number that fits best.
     # Pad 1 gives the shift between the two coordinate frames (bbox centre of the paired pads).
+    # Pads sharing a number (e.g. two MP tabs) pair in file order, each footprint pad at most once.
     pairs = []
+    used = set()
     for e in exp:
-        cands = [p for p in allpads if p["num"] == e[0]]
+        cands = [p for p in allpads if p["num"] == e[0] and id(p) not in used]
         if not cands:
             continue
-        pairs.append((e, min(cands, key=lambda p: 0 if e[3] is None else abs(p["w"] - e[3]) + abs(p["h"] - e[4]))))
+        best = min(cands, key=lambda p: 0 if e[3] is None else round(abs(p["w"] - e[3]) + abs(p["h"] - e[4]), 3))
+        used.add(id(best))
+        pairs.append((e, best))
     if pairs:
         fc = fplib.bbox_centre([(p["x"], p["y"]) for _, p in pairs])
         ec = fplib.bbox_centre([(e[1], e[2]) for e, _ in pairs])
@@ -179,7 +183,7 @@ def check(rec, fp_path, tol, comp=None):
                 errs.append("record has no pin name for pad %s" % n)
             elif got is None:
                 errs.append("symbol has no pin %s (record: %s)" % (n, want))
-            elif fplib.norm_pin(fplib.strip_pin_suffix(got, n)) != fplib.norm_pin(want):
+            elif fplib.norm_pin(want) not in (fplib.norm_pin(got), fplib.norm_pin(fplib.strip_pin_suffix(got, n))):
                 errs.append("pad %s: symbol pin '%s', record '%s'" % (n, got, want))
         for n in comp["pinnames"]:
             if n not in names:

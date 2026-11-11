@@ -1,0 +1,21 @@
+mpn: 502382-0570
+manufacturer: Molex
+package: {name: "CLIK-Mate 1.25 mm vertical receptacle, 5 circuits", code: "502382-0570", pins: 6}
+datasheet: {url: "https://www.molex.com/en-us/products/part-detail/5023820570", revision: "Molex CAD footprint CONN_SD-502382-001_05_MOL (from drawing SD-502382-001)", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "HIL_Daughter_Load:Molex_CLIK-Mate_502382-0570_1x05-1MP_P1.25mm_Vertical"
+footprint_sha256: "983fc25143837ec19a880b63a5897f3b73202f11a643c068ff4364226569e7da"
+pins: 6
+pitch_mm: 1.25
+body_mm: [9.7, 6.3]
+land:
+  - {numbers: [1,2,3,4,5], size_mm: [0.66, 1.905], centres: [[-2.5,1.95],[-1.25,1.95],[0,1.95],[1.25,1.95],[2.5,1.95]]}
+  - {numbers: [MP,MP], size_mm: [1.092, 2.896], centres: [[-4.35,-1.4],[4.35,-1.4]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.3
+exposed_pad: {present: false}
+pin1: {description: "pin 1 left in the contact row, mounting tabs behind the row"}
+pin1_side: {x: neg, y: pos}
+pin_table: {1: Pin_1, 2: Pin_2, 3: Pin_3, 4: Pin_4, 5: Pin_5, MP: MountPin}
+risk: {level: high, reason: "vendor CAD numbers the tabs 6/7 instead of MP; fine pitch"}
+verified: {by: "pcb-kit agent", date: "2026-11-11", layers: [record]}
+notes: "Pads copied from the KiCad stdlib footprint; centres identical to the Molex CAD footprint after the 0.7695 mm origin shift, Molex pads 0.06/0.2 mm larger. Tabs kept as MP (vendor 6/7 would leave them unconnected). 3D: Molex STEP, Z up, origin at the body centre = Molex footprint origin; offset (0, 0.77, 2.35) puts the bottom (z -2.35) on the board. Outline 9.7 x 6.3 mm, courtyard drawn from the STEP bbox. Alignment derived from STEP points, not rendered."

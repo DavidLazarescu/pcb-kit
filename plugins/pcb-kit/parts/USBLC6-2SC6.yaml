@@ -1,0 +1,20 @@
+mpn: USBLC6-2SC6
+manufacturer: STMicroelectronics
+package: {name: "SOT23-6L", code: "SOT23-6L", pins: 6}
+datasheet: {url: "https://www.st.com/resource/en/datasheet/usblc6-2.pdf", revision: "DS4260 Rev 7", page_land_pattern: 15, page_pinout: 1}
+kicad_footprint: "Package_TO_SOT_SMD:SOT-23-6"
+footprint_sha256: "f341c73aac9dcb553456f68bf3fee3d26eb14acf6d8a1cae82b50418fe1d71ca"
+pins: 6
+pitch_mm: 0.95
+body_mm: [1.6, 2.9]
+land:
+  - {numbers: [1,2,3,4,5,6], size_mm: [1.2, 0.6], centres: [[-1.45,-0.95],[-1.45,0],[-1.45,0.95],[1.45,0.95],[1.45,0],[1.45,-0.95]]}
+land_position_tol_mm: 0.4
+land_size_tol_mm: 0.3
+exposed_pad: {present: false}
+pin1: {description: "top-left, 1-3 down the left, 4-6 up the right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: "I/O1", 2: GND, 3: "I/O2", 4: "I/O2", 5: VBUS, 6: "I/O1"}
+risk: {level: normal, reason: "symmetric I/O pairs; GND and VBUS must not swap"}
+verified: {by: "pcb-kit agent", date: "2026-11-11", layers: [record]}
+notes: "ST Figure 19: 0.60 x 1.20 pads, 3.50 outer, 2.30 inner (centres +-1.45). Stdlib 1.325 x 0.6 at +-1.1375 covers the ST land; centre delta 0.31 mm, accepted like other SOT-23 parts."

@@ -1,0 +1,20 @@
+mpn: 2N7002LT1G
+manufacturer: onsemi
+package: {name: "SOT-23", code: "CASE 318 STYLE 21", pins: 3}
+datasheet: {url: "https://www.onsemi.com/pdf/datasheet/2n7002l-d.pdf", revision: "2N7002L/D, case outline 98ASB42226B issue AU", page_land_pattern: 4, page_pinout: 1}
+kicad_footprint: "Package_TO_SOT_SMD:SOT-23"
+footprint_sha256: "0d88c86c1b6d8c1aae4aa8c09386264c089d4451a128b6ccd63ed253f4300b15"
+pins: 3
+pitch_mm: 0.95
+body_mm: [1.3, 2.9]
+land:
+  - {numbers: [1,2,3], size_mm: [0.95, 0.56], centres: [[-0.975,-0.95],[-0.975,0.95],[0.975,0]]}
+land_position_tol_mm: 0.15
+land_size_tol_mm: 0.6
+exposed_pad: {present: false}
+pin1: {description: "pins 1 and 2 on one side, pin 3 alone opposite"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: G, 2: S, 3: D}
+risk: {level: high, reason: "SOT-23 pin order differs between vendors and styles"}
+verified: {by: "pcb-kit agent", date: "2026-11-11", layers: [record]}
+notes: "onsemi STYLE 21: 1 gate, 2 source, 3 drain. Recommended footprint 0.56 x 0.95 pads, 2.90 outer, 1.90 between pins 1 and 2; stdlib pads 1.475 x 0.6 at +-0.9375 (longer, accepted)."

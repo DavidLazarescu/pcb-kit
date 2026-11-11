@@ -1,0 +1,20 @@
+mpn: 150060VS75000
+manufacturer: Wurth Elektronik
+package: {name: "0603 chip LED (WL-SMCW)", code: "0603", pins: 2}
+datasheet: {url: "https://www.we-online.com/components/products/datasheet/150060VS75000.pdf", revision: "WL-SMCW series drawing rev 002.009", page_land_pattern: 1, page_pinout: 1}
+kicad_footprint: "LED_SMD:LED_0603_1608Metric"
+footprint_sha256: "7931ed1efba34cb13c8d74a60eb1dca4b0be57d950c38e08c3e7f007db500a1c"
+pins: 2
+pitch_mm: 1.6
+body_mm: [1.6, 0.8]
+land:
+  - {numbers: [1,2], size_mm: [0.8, 0.8], centres: [[-0.8,0],[0.8,0]]}
+land_position_tol_mm: 0.1
+land_size_tol_mm: 0.2
+exposed_pad: {present: false}
+pin1: {description: "pin 1 = cathode, polarity mark on the cathode end"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: K, 2: A}
+risk: {level: high, reason: "LED polarity"}
+verified: {by: "pcb-kit agent", date: "2026-11-11", layers: [record]}
+notes: "Colour bright green. WE land 0.8 x 0.8 pads, 0.8 gap, 2.4 outer; stdlib 0.875 x 0.95 at +-0.7875. Datasheet schematic: pin 1 '-', pin 2 '+'."
