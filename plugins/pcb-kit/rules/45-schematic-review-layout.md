@@ -49,3 +49,13 @@ follow it sheet by sheet without zooming around or turning their head.
   MOSFET, the protection circuit next to what it switches off.
 - A reviewer must be able to follow one function (e.g. set point → control loop → power stage → shunt →
   readback) on one sheet without jumping pages; cross-sheet labels only between functions.
+
+## Note texts on the sheets (review feedback, 2026-11-11)
+- A note explains what a reader would otherwise not understand: why a block exists, why a value was
+  chosen, what happens in a fault. Nothing the symbols already show.
+- Short: 1–4 lines per block, plain sentences. Lead with the purpose ("Turns the load off at 80 °C
+  heat-sink temperature, back on below 75 °C.").
+- Math only for non-trivial, decision-relevant results, and then only the result with its key inputs
+  ("Threshold 9 V: normal gate ≤ 5.2 V at 3 A, simulated"). No derivations, no unit bookkeeping,
+  no restating datasheet defaults. Full calculations live in DESIGN.md; the note may point there.
+- Same wording style on every sheet; no session history ("changed on …", "review …") in notes.

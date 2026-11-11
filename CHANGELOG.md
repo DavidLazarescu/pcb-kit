@@ -14,3 +14,4 @@
 - 2026-11-09: 25 part records from the cell-voltage emulator board (TI ICs, CPC1017N, MCP1792 5 V, passives with stdlib land noted, MountingHole).
 - 2026-11-09: rule 45: tile-level render review (12 tiles at 4200 px) with a defect list, defect criteria, review by someone other than the builder; overview-zoom checks let overlaps and a broken custom op-amp symbol through.
 - 2026-11-11: rule 45: split sheets along the signal chain; measurement next to what it measures (EE review).
+- 2026-11-11: rule 45: note texts short and explanatory, math only for non-trivial results.
