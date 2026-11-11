@@ -226,7 +226,7 @@ with open(a.out_script, "w") as o:
             "# 1. In the PCB editor run Tools > Update Footprints from Library first (its dialog can\n"
             "#    reset text positions), then save.\n"
             "# 2. Open Tools > Scripting Console and run: exec(open('<path to this file>').read())\n"
-            "# 3. Check the result, then save the board. Run this once; it is one undo-able action.\n")
+            "# 3. Check the result, then save the board. Run this once. Console edits are not in the undo history; File > Revert discards them.\n")
     o.write("import pcbnew as P\nb = P.GetBoard(); F = {f.GetReference(): f for f in b.GetFootprints()}\n")
     o.write("for f in F.values():\n    t = f.Reference(); t.SetTextSize(P.VECTOR2I(P.FromMM(%g), P.FromMM(%g))); "
             "t.SetTextThickness(P.FromMM(%g)); t.SetKeepUpright(True)\n" % (SIZE, SIZE, THICK))

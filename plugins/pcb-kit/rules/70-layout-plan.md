@@ -59,3 +59,8 @@ The plan contains, in this order (template `templates/ROUTING_PLAN.md`):
    net across a high-current path on the opposite layer.
 9. Order of work with checkpoints A (placement), B (critical nets), C (complete) — see rule 80.
 10. Assembly notes that come out of the layout (torque, order of soldering and screwing).
+
+11. Decide the layer count from routing density before placement: count the slow cross-connections
+    that must cross critical clusters. If a 2-layer board would route them on the ground layer, propose
+    4 layers early (the JLC 4-layer cost delta is small for small boards) instead of discovering it
+    during routing.

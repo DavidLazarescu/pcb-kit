@@ -21,6 +21,24 @@
 - Ask big, blocking questions early. Decide small style questions yourself.
 - All important calculations appear as text notes next to their block in the schematic.
 
+## Review standards (from a lead-EE review of an earlier board; check every board against them)
+- Schematic: DNP parts marked as DNP and excluded from the BOM and assembly outputs; power nets coloured
+  (net-class colour); connector symbols with power pins at the top and GND at the bottom; active-low signals
+  named with an overbar (`~{ALERT}`), the same in schematic, PCB and documents; differential pairs declared.
+- ICs show the full MPN as their value; passives show the parameters that matter (value, tolerance, voltage).
+- Regulators: 100 nF at input and output in addition to the bulk capacitors from the datasheet, at the pins.
+- Power distribution in pours and planes where practical; no needlessly narrow power traces.
+- Testability: test pads on important signals (buses, supplies, control nodes), labelled with their signal
+  names on the silkscreen or in a legend there, reachable after assembly.
+- ESD/TVS protection on every externally accessible connector, placed at the connector with a short path
+  to ground.
+- Connectors labelled: reference, interface name, pin 1 / pin names, polarity and rating where space allows.
+- Mechanics: four M3 mounting holes with copper keep-out; outline closed on Edge.Cuts.
+- Layout: power nets red in the PCB view (net-class colour); vias tented on both sides unless a via is a
+  test or thermal point; teardrops on track-to-via and track-to-pad joints within the fab's limits.
+- Footprints: 3D model for every part; silkscreen outlines, pin-1 and polarity marks and references
+  readable after assembly.
+
 ## Documents and language
 - Documents are English unless the project overrides it. Explanations to the user follow the user's language, simple, with numbers and ASCII sketches.
 - Mark every statement: [V] verified (with source), [A] assumption, [P] pending, [D] decision (who, when), [R] own calculation.

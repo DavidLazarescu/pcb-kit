@@ -42,7 +42,7 @@
 
 ## Silkscreen
 - Konnect cannot move or hide reference fields or draw silk lines. The pcbnew console script is the route:
-  `tools/silkplace.py` plans it, the owner runs it in the open editor (one undo-able action) and saves.
+  `tools/silkplace.py` plans it, the owner runs it in the open editor and saves (console edits are not undoable; File > Revert discards them).
   Never edit the board file as text.
 - Reference text 1.0 mm / 0.15 mm, 0.8 mm only where 1.0 does not fit, never smaller. Each reference sits closer
   to its own part than to any other and over no pad. Dense rows of passives get labels on one side in a
