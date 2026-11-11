@@ -1,0 +1,20 @@
+mpn: "NetTie_2"
+manufacturer: KiCad stdlib (copper only, no MPN)
+package: {name: "net tie, 2 pads", code: "NetTie-2_SMD_Pad0.5mm", pins: 2}
+datasheet: {url: "none", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "NetTie:NetTie-2_SMD_Pad0.5mm"
+footprint_sha256: "6fa0592afb0af821b98f26636b74e8c3eb93c1852bf6bd3872edbbe20f67d3e0"
+pins: 2
+pitch_mm: 1.0
+body_mm: [1.5, 0.5]
+land:
+  - {numbers: [1,2], size_mm: [0.5, 0.5], centres: [[-0.5,0],[0.5,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "copper bridge between two nets, no part placed"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "1", 2: "2"}
+risk: {level: normal, reason: "virtual part; placement decides what it does (Kelvin tap at a sense resistor pad edge)"}
+verified: {by: "pcb-kit agent", date: "2026-11-11", layers: [record]}
+notes: "Used for Kelvin sense: pad on the sense resistor pad's inner edge, the other pad starts the sense trace, so DRC keeps sense and force copper apart. Not assembled; 3D exempt via 3d-exceptions.txt; exclude from the assembly BOM."

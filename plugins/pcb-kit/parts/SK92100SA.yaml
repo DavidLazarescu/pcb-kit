@@ -1,0 +1,21 @@
+mpn: "SK92100SA"
+manufacturer: Fischer Elektronik
+package: {name: "extruded heat sink SK 92, 100 mm, standing, 2 x M3 tapped", code: "SK 92 100 SA", pins: 1}
+datasheet: {url: "https://www.fischerelektronik.de (SK 92 drawing, owner screenshot 2026-11-06)", revision: "drawing as received", page_land_pattern: 1, page_pinout: 1}
+kicad_footprint: "HIL_Daughter_Load:Heatsink_Fischer_SK92_100_SA_Vertical"
+footprint_sha256: "096b5ad37958710603599457e5fc84db0c76c710805452ad7aaa3933d8db8649"
+pins: 1
+pitch_mm: 50
+drill_mm: 3.2
+body_mm: [100, 10]
+land:
+  - {numbers: [1,1], size_mm: [6, 6], centres: [[-25,0],[25,0]]}
+land_position_tol_mm: 0.1
+land_size_tol_mm: 0.5
+exposed_pad: {present: false}
+pin1: {description: "two M3 pads, both pad 1 (one net)"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "1"}
+risk: {level: normal, reason: "mechanical; hole positions are drilled by hand into the base, so they follow the footprint"}
+verified: {by: "pcb-kit agent", date: "2026-11-11", layers: [record]}
+notes: "Base 100 x 10 mm on the board, fins overhang the board edge. The two M3 holes are tapped by hand in the base end face 50 mm apart, so the board defines them. STEP from Fischer, scaled to 100 mm length in the footprint."
