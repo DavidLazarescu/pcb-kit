@@ -42,3 +42,10 @@ follow it sheet by sheet without zooming around or turning their head.
 - Prefer the KiCad stdlib symbol (or a copy of it) over a hand-drawn one; if a custom symbol is
   needed, model it on the stdlib style of the same device class (op-amp triangle, regulator box, …).
 - Render every custom symbol once on its own and check that pin names and numbers do not overlap.
+
+## Sheet split along the signal chain (review feedback, 2026-11-11)
+- Split sheets by signal chain, not by part type. A part that measures, drives or protects another part
+  sits on the same sheet, next to it: the current monitor next to its shunt, the gate driver next to the
+  MOSFET, the protection circuit next to what it switches off.
+- A reviewer must be able to follow one function (e.g. set point → control loop → power stage → shunt →
+  readback) on one sheet without jumping pages; cross-sheet labels only between functions.
