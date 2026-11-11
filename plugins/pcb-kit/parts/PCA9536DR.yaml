@@ -1,0 +1,22 @@
+mpn: PCA9536DR
+manufacturer: Texas Instruments
+package: {name: "SOIC-8", code: "D0008A", pins: 8}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/pca9536.pdf", revision: "SCPS125H, revised 2022-03", page_land_pattern: 33, page_pinout: 3}
+kicad_footprint: "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+footprint_sha256: "074ecb2092b24fa4b4b9cdd7c926fc587b0d7d6d21e7341e57935fd42d36894f"
+pins: 8
+pitch_mm: 1.27
+body_mm: [3.9, 4.9]
+land:
+  - {numbers: [1,2,3,4,5,6,7,8], size_mm: [1.55, 0.6], dual_row: {row_spacing_mm: 5.4}}
+land_position_tol_mm: 0.25
+land_size_tol_mm: 0.45
+exposed_pad: {present: false}
+pin1: {description: "top-left, left row counting down; pin 8 top-right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: P0, 2: P1, 3: P2, 4: GND, 5: P3, 6: SCL, 7: SDA, 8: VCC}
+risk: {level: high, reason: "SOIC-8 narrow body, ambiguous package name"}
+verified: {by: "pcb-kit agent", date: "2026-11-11", layers: [record]}
+notes: "KiCad stdlib pads are 0.4 mm longer than the TI/onsemi example, outer edge equal within 0.05 mm, hence the wider tolerances. TI example land D0008A: pads 1.55 x 0.6, row spacing 5.4 mm (narrow 3.9 mm body, not the wide variant). Datasheet also has a DGK (VSSOP) variant with different numbering geometry; this record is D only."
+symbol_pin_names: {1: IO0, 2: IO1, 3: IO2, 4: VSS, 5: IO3, 8: VDD}
+# symbol_pin_names: stdlib symbol words pins IO0..IO3/VSS/VDD instead of P0..P3/GND/VCC; naming only.

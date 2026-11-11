@@ -1,0 +1,20 @@
+mpn: SN74LVC1G74DCUR
+manufacturer: Texas Instruments
+package: {name: "VSSOP-8", code: "DCU0008A", pins: 8}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf", revision: "SCES794G, revised 2021-09", page_land_pattern: 23, page_pinout: 4}
+kicad_footprint: "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+footprint_sha256: "dca72da69de3263affb64fd1abd218db3cf30ff727c784b3f02c8c588a2875a8"
+pins: 8
+pitch_mm: 0.5
+body_mm: [2.0, 2.3]
+land:
+  - {numbers: [1,2,3,4,5,6,7,8], size_mm: [0.85, 0.3], dual_row: {row_spacing_mm: 3.1}}
+land_position_tol_mm: 0.2
+land_size_tol_mm: 0.45
+exposed_pad: {present: false}
+pin1: {description: "top-left, left row counting down; pin 8 top-right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: CLK, 2: D, 3: "Q", 4: GND, 5: "Q", 6: CLR, 7: PRE, 8: VCC}
+risk: {level: high, reason: "VSSOP-8 DCU, ambiguous with MSOP/DCT variants"}
+verified: {by: "pcb-kit agent", date: "2026-11-11", layers: [record]}
+notes: "KiCad stdlib pads are 0.4 mm longer than the TI/onsemi example, outer edge equal within 0.05 mm, hence the wider tolerances. TI example land DCU0008A: pads 0.85 x 0.3, row spacing 3.1 mm. Pin 3 is the inverted output (Q-bar) and pin 5 is Q in the datasheet table; names differ only by overbar."
