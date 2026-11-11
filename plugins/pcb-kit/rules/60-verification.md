@@ -9,6 +9,7 @@ ERC 0 does not prove correctness. Verify connectivity independently with kicad-c
 - Check critical pins by hand against the spec: isolation barrier pins, supplies of every IC, enable and reset pins, default-state pins, ground islands.
 - Island check: no net contains both GND and an isolated ground.
 - Render sheets to PDF/SVG and look at them (text overlaps, dangling wires, unreadable notes).
+- `python3 -I tools/schcheck.py` on every sheet must report `TOTAL 0` (no field, label or note overlapping a symbol body, another text or a wire) before a schematic is handed over. It estimates text boxes, so it does not replace the rendered review above.
 - Save a verified baseline netlist into `verify/` in the repo after each accepted state.
 - Verification is done by a different agent than the builder (`schematic-verifier`).
 - Say what was verified and what was not.

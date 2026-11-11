@@ -13,7 +13,7 @@ It adds to, and does not replace, the generic Konnect skills (`konnect`, `kicad-
 | `rules/` | Kit rules: house standards plus one file per phase |
 | `agents/` | `part-researcher` (haiku), `schematic-builder`, `schematic-verifier` (sonnet) |
 | `templates/` | DESIGN, SCHEMATIC_SPEC, ROUTING_PLAN, RESEARCH, project CLAUDE.md, `pcb-rules/`, parts registry |
-| `tools/` | `verify.sh`, `netcompare.py`, `thermal.py`, `fpcheck.py`, `fpdiff.py`, `bom_fpcheck.sh` (footprint gate, stdlib only) |
+| `tools/` | `verify.sh`, `netcompare.py`, `thermal.py`, `fpcheck.py`, `fpdiff.py`, `schcheck.py` (schematic text-overlap check), `bom_fpcheck.sh` (footprint gate, stdlib only) |
 | `parts/` | Parts registry, one YAML per MPN (see `parts/README.md`) |
 | `hooks/` | Blocks text edits of `*.kicad_*` files |
 
