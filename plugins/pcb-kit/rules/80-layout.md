@@ -39,3 +39,28 @@
   faces) and the footprint silk marks, and let the owner check in the 3D viewer (Alt+3).
 - Courtyards of parts that must touch (a power package against its heat sink) are drawn to the real body,
   so DRC stays clean without exclusions.
+
+## Silkscreen
+- Konnect cannot move or hide reference fields or draw silk lines. The pcbnew console script is the route:
+  `tools/silkplace.py` plans it, the owner runs it in the open editor (one undo-able action) and saves.
+  Never edit the board file as text.
+- Reference text 1.0 mm / 0.15 mm, 0.8 mm only where 1.0 does not fit, never smaller. Each reference sits closer
+  to its own part than to any other and over no pad. Dense rows of passives get labels on one side in a
+  consistent order.
+- Measure text with the ink box (`GetEffectiveTextShape().BBox()`). `GetBoundingBox()` overstates it by about
+  15% in width and 50% in height.
+- Run Update Footprints from Library before placing references, since its dialog can reset text positions.
+- pcbnew SWIG in KiCad 10 does not expose LINE_STYLE: draw dashed silk (for example an isolation barrier) as
+  short segments.
+- Loop (see `tools/README.md`): plan, apply to a copy, `kicad-cli pcb drc --refill-zones` on the copy, render
+  and gridcrop, adjust overrides, hand the console script to the owner.
+
+## Visual checks
+- Render a gridded crop of a dense region BEFORE routing or labelling it and again after. A render costs about
+  1-2k tokens, far less than DRC iterations. DRC proves clearances, the render judges legibility and routing
+  quality; use both.
+
+## More Konnect gaps (first layout)
+- No tool deletes vias or zones or changes zone priority; do it in the GUI.
+- `add_layer` needs KiCad closed.
+- Specctra DSN export refuses boards that already have tracks, zones or custom rules.
