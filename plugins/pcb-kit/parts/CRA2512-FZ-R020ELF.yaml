@@ -18,4 +18,4 @@ pin_table: {1: "1", 2: "2"}
 symbol_pin_names: {1: "", 2: ""}
 risk: {level: normal, reason: "non-polar two-terminal chip part"}
 verified: {by: "pcb-kit agent", date: "2026-11-12", layers: [record]}
-notes: "20 mOhm 1% 2 W current sense resistor, 2512, Kelvin-sensed through two net ties at the pads. Land is the KiCad stdlib/IPC land; compare with the Bourns CRA2512 recommended land before the first order."
+notes: "20 mOhm 1% current sense resistor, 2512, Kelvin-sensed through two net ties at the pads. Land is the KiCad stdlib/IPC land; compare with the Bourns CRA2512 recommended land before the first order."
