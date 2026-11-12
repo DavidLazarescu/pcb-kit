@@ -85,3 +85,5 @@ follow it sheet by sheet without zooming around or turning their head.
   (Place → Rectangle, one per block) and say so in the handover.
 - **Align labels and ports that belong together.** A bus or a pair (SDA/SCL, a sense pair, supply rails into
   a block) stacks vertically at the same x, one grid step apart, in pin order.
+- **PWR_FLAG points up**, standing on a short stub above the rail, like a supply symbol. Hang it below the
+  rail only where the space above is taken (for example at a connector pin row).
