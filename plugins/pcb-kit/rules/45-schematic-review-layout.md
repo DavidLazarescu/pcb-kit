@@ -87,6 +87,14 @@ follow it sheet by sheet without zooming around or turning their head.
   (≥ 10 mm) to its neighbours, and ideally a frame; signals between blocks go through net labels at the block
   edge instead of long wires across the sheet. Konnect cannot draw rectangles: leave the frames to the GUI
   (Place → Rectangle, one per block) and say so in the handover.
+  - Lay the blocks out as a grid in reading order (left to right, then the next row), each block's notes directly
+    under or beside it. Cut every wire that runs between blocks and replace it with a label at each block edge
+    (output on the right edge, inputs on the left edge, stacked at one x).
+  - Parts that are not in the signal chain (heat sink, fan header, BOM-only mechanical items) get their own block,
+    on the root sheet if the chain sheet is full. Moving a symbol to another sheet gives it a new UUID: update the
+    PCB with re-link by reference, and set DNP again where it was set (Konnect cannot set DNP).
+  - Check the fit before moving anything: A4 holds about four blocks with notes; with more, move the side blocks
+    out or ask for A3. A review of the result happens against this list, not against the agent's own report.
 - **Align labels and ports that belong together.** A bus or a pair (SDA/SCL, a sense pair, supply rails into
   a block) stacks vertically at the same x, one grid step apart, in pin order.
 - **PWR_FLAG points up**, standing on a short stub above the rail, like a supply symbol. Hang it below the
