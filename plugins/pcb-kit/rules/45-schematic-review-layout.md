@@ -59,3 +59,11 @@ follow it sheet by sheet without zooming around or turning their head.
   ("Threshold 9 V: normal gate ≤ 5.2 V at 3 A, simulated"). No derivations, no unit bookkeeping,
   no restating datasheet defaults. Full calculations live in DESIGN.md; the note may point there.
 - Same wording style on every sheet; no session history ("changed on …", "review …") in notes.
+
+## Readability (owner review of the first board)
+- The main current path is one straight line; sense and Kelvin taps branch off sideways through their net ties.
+- Decoupling capacitors in electrical order along the rail: the 100 nF next to the supply pin, bulk capacitors further out.
+- Incoming connectors face into the circuit; power pins at the top, ground at the bottom.
+- No text over text, wires or symbols; a label sits on a short stub, never across a wire. BOM-only parts (screws, insulators) get their own block.
+- Same net name on both sides of a pass-through part (ESD arrays with internally joined pins); different names only across a series element.
+- After every edit render the sheet and look at it. When rotating or redrawing net ties, compare the netlist with the baseline: a pin swap changes the pad nets on the board.
