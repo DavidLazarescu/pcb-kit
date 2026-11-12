@@ -65,3 +65,27 @@
 - No tool deletes vias or zones or changes zone priority; do it in the GUI.
 - `add_layer` needs KiCad closed.
 - Specctra DSN export refuses boards that already have tracks, zones or custom rules.
+
+## Owner review of the first board, round 2
+- **3D models are checked by eye before handover.** Render top and tilted
+  (`kicad-cli pcb render --side front --perspective --rotate '40,0,0'`) and look at every custom or
+  downloaded model. Vendor STEP files from SolidWorks are often drawn Y-up: the part lies on its side and needs
+  rotate X 90° plus a Z offset of half its height. Fix it in the library footprint and update the board from
+  the library, so the fix survives.
+- **Decoupling first, routing second.** The small capacitor sits right at its supply pin (pad to pad about
+  1 mm where the package allows) and is turned so its ground pad faces the IC ground pin, or a ground via
+  placed directly at that pad. The loop supply pin → capacitor → ground → IC ground is the smallest possible;
+  bulk capacitors sit behind it. Do not move a capacitor away to make a route prettier; route around it.
+- **Test points are labelled with the signal**, not the reference: the silk next to a test point reads
+  `GND`, `GATE`, `I_SET`, and the TP reference is hidden. No separate test-point legend table, because looking
+  up a table while probing is overhead.
+- **Indicators are labelled with their function** (`PWR`, `HOT`, `ALERT`) directly next to the LED; the LED
+  reference is hidden like any passive.
+- **A pad that a zone feeds lies completely inside the zone outline.** A zone outline cutting through a pad
+  looks like an error even when the fill joins it; draw the outline around the whole pad.
+- **As few layers as reasonable.** Route signals on the outer layers. Inner layers are planes; a trace on a
+  plane layer needs a stated reason in the routing plan, and a single stray trace there has none.
+- **As few zones as possible.** Every zone has a reason written in the routing plan. Do not repair a plane
+  with patch zones; change the main outline or the keep-out instead.
+- **45° corners only**, no 90° corners and no arcs mixed in. Check every corner by script before handover
+  (angle between consecutive segments of a net on one layer), not only by eye.

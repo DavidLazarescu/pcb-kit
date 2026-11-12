@@ -8,7 +8,10 @@ follow it sheet by sheet without zooming around or turning their head.
   - Vertical two-pin parts (R, C, L, fuse, LED): Reference and Value **to the right** of the body,
     Reference above Value, left-aligned, never inside or on the body.
   - Horizontal two-pin parts: Reference **above**, Value **below** the body, centred.
-  - ICs and multi-pin symbols: Reference above the top-left corner, Value below the bottom-left corner.
+  - ICs and multi-pin symbols: Reference and Value **stacked as one block** (Reference on top, Value
+    directly below it) right at the body, at a corner that has free space, within one or two grid steps.
+    Never split them to opposite corners and never let them drift away from the body: the reader must
+    see at once which part number belongs to which reference.
   - Connectors: Reference above, Value (part number) below.
   - Power symbols and labels: KiCad default, readable from the bottom.
 - Same spacing between body and text everywhere (one grid step, 1.27 mm).
@@ -67,3 +70,18 @@ follow it sheet by sheet without zooming around or turning their head.
 - No text over text, wires or symbols; a label sits on a short stub, never across a wire. BOM-only parts (screws, insulators) get their own block.
 - Same net name on both sides of a pass-through part (ESD arrays with internally joined pins); different names only across a series element.
 - After every edit render the sheet and look at it. When rotating or redrawing net ties, compare the netlist with the baseline: a pin swap changes the pad nets on the board.
+
+## Spacing, alignment and blocks (owner review of the first board, round 2)
+- **Breathing room at every connection.** Between a pin end (part or power symbol) and the next junction,
+  corner or wire it joins, keep at least one grid step (2.54 mm) of plain wire. A capacitor hanging from a
+  rail gets a vertical stub from the rail to its pin, the same as the stub from its other pin down to the
+  ground symbol; a rail must never run straight into a pin end. Generous, not wasteful: one or two steps.
+- **Align power symbols.** Within a block, ground symbols sit on one horizontal line and supply symbols on
+  one line, wherever the parts allow it (extend the shorter stubs). Ragged ground heights read as noise.
+- **Blocks.** Split each sheet into a few logical blocks (set point, control loop, power stage, readback,
+  supply, isolation, protection …), not finer than a reader thinks in. Each block has a heading, clear space
+  (≥ 10 mm) to its neighbours, and ideally a frame; signals between blocks go through net labels at the block
+  edge instead of long wires across the sheet. Konnect cannot draw rectangles: leave the frames to the GUI
+  (Place → Rectangle, one per block) and say so in the handover.
+- **Align labels and ports that belong together.** A bus or a pair (SDA/SCL, a sense pair, supply rails into
+  a block) stacks vertically at the same x, one grid step apart, in pin order.
