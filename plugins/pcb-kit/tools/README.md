@@ -26,3 +26,9 @@ script, for board text and markings; it sees `P`, `b` and `F` (reference to foot
 5. Edit the overrides and repeat from 1.
 6. Give the owner the console script. In the open PCB editor: Update Footprints from Library, Tools >
    Scripting Console, `exec(open(path).read())`, save. Run it once.
+
+## Schematic checks
+
+| Tool | Does |
+|---|---|
+| `schstubs.py SHEET.kicad_sch ...` | Read-only. Lists pins (power symbols, test points, parts) that meet a wire across, sit on a T or have a stub shorter than 2.54 mm, and wire nodes with three or more ends but no junction dot. Run after every schematic edit; empty output is the pass. |

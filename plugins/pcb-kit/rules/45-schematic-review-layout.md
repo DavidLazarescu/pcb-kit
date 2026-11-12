@@ -72,6 +72,10 @@ follow it sheet by sheet without zooming around or turning their head.
 - After every edit render the sheet and look at it. When rotating or redrawing net ties, compare the netlist with the baseline: a pin swap changes the pad nets on the board.
 
 ## Spacing, alignment and blocks (owner review of the first board, round 2)
+- **Every symbol meets its wire end-on, through a stub.** A power symbol, test point or part pin never sits on a
+  rail corner, at the end of a wire that runs across it, or on a T in the middle of a rail. The wire leaves the
+  pin in the pin's own direction for at least one grid step, then turns or joins. Check every sheet with
+  `tools/schstubs.py` (also reports nodes of three or more wire ends without a junction dot).
 - **Breathing room at every connection.** Between a pin end (part or power symbol) and the next junction,
   corner or wire it joins, keep at least one grid step (2.54 mm) of plain wire. A capacitor hanging from a
   rail gets a vertical stub from the rail to its pin, the same as the stub from its other pin down to the
