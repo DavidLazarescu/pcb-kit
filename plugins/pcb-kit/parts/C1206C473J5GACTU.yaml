@@ -1,0 +1,21 @@
+mpn: "C1206C473J5GACTU"
+manufacturer: KEMET
+package: {name: "chip 1206", code: "C_1206_3216Metric", pins: 2}
+datasheet: {url: "none (manufacturer datasheet not fetched)", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "Capacitor_SMD:C_1206_3216Metric"
+footprint_sha256: "b2e4a08e3aaf40bc587090190c0e3969e962d7ae962c172cce0581ae8327651c"
+pins: 2
+pitch_mm: 2.95
+body_mm: [3.2, 1.6]
+land:
+  - {numbers: [1,2], size_mm: [1.15, 1.8], centres: [[-1.475,0],[1.475,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "left pad; no polarity"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "1", 2: "2"}
+symbol_pin_names: {1: "", 2: ""}
+risk: {level: normal, reason: "non-polar two-terminal chip part"}
+verified: {by: "pcb-kit agent", date: "2026-11-12", layers: [record]}
+notes: "47 nF 50 V C0G MLCC, 1206. Package size from the MPN size code; land is the KiCad stdlib/IPC land (no manufacturer land checked)."

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Usage: bom_fpcheck.sh <project_dir | root.kicad_sch | netlist.net> [--parts-dir DIR] [--fp-dir DIR]...
 # Gate command: runs fpcheck for every fitted part (one line per MPN) and checks that each footprint
-# has an existing 3D model. Statuses: PASS, FAIL, NO-RECORD, MISSING-3D. Exit 0 only if all PASS.
+# has an existing 3D model. Statuses: PASS, FAIL, NO-RECORD, MISSING-3D, BOM-ONLY (no footprint, skipped).
+# Exit 0 only if every part with a footprint passes.
 # DNP parts are skipped. Read-only with respect to the KiCad project.
 set -u
 here=$(cd "$(dirname "$0")" && pwd)
@@ -31,6 +32,10 @@ opts = ["--project-dir", proj, "--fp-dir", proj, "--fp-dir", os.path.join(proj, 
 rows, bad = [], 0
 for (mpn, fp), refs in sorted(groups.items(), key=lambda kv: kv[1][0]):
     refs.sort()
+    if not fp:
+        # BOM-only item (no footprint: cable, screw, insulator); nothing to check on the board
+        rows.append(("BOM-ONLY", ",".join(refs) if len(refs) < 4 else "%s..(%d)" % (refs[0], len(refs)), mpn, "-", []))
+        continue
     r = subprocess.run([sys.executable, os.path.join(here, "fpcheck.py"), mpn, "--netlist", net, "--ref", refs[0], "--json"] + opts,
                        capture_output=True, text=True)
     try:
@@ -52,9 +57,10 @@ for (mpn, fp), refs in sorted(groups.items(), key=lambda kv: kv[1][0]):
 w = max(len(r[1]) for r in rows)
 for st, refs, mpn, fp, errs in rows:
     print("%-22s %-*s %-26s %s" % (st, w, refs, mpn[:26], fp[:40]))
-    if st not in ("PASS", "NO-RECORD"):
+    if st not in ("PASS", "NO-RECORD", "BOM-ONLY"):
         for e in errs:
             print("      - " + e)
-print("%d of %d parts PASS" % (len(rows) - bad, len(rows)))
+nb = sum(1 for r in rows if r[0] == "BOM-ONLY")
+print("%d of %d parts PASS, %d BOM-only" % (len(rows) - bad - nb, len(rows) - nb, nb))
 sys.exit(1 if bad else 0)
 PY

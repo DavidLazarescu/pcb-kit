@@ -1,0 +1,21 @@
+mpn: "RC0603FR-07120RL"
+manufacturer: Yageo
+package: {name: "chip 0603", code: "R_0603_1608Metric", pins: 2}
+datasheet: {url: "none (manufacturer datasheet not fetched)", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "Resistor_SMD:R_0603_1608Metric"
+footprint_sha256: "7190ac4a00125b807e54129ef0d87d87f2a658eeb74d025a7028203419b09f23"
+pins: 2
+pitch_mm: 1.65
+body_mm: [1.6, 0.8]
+land:
+  - {numbers: [1,2], size_mm: [0.8, 0.95], centres: [[-0.825,0],[0.825,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "left pad; no polarity"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "1", 2: "2"}
+symbol_pin_names: {1: "", 2: ""}
+risk: {level: normal, reason: "non-polar two-terminal chip part"}
+verified: {by: "pcb-kit agent", date: "2026-11-12", layers: [record]}
+notes: "120R 1% thick film resistor, 0603. Package size taken from the MPN size code; land is the KiCad stdlib/IPC land (no manufacturer land checked)."

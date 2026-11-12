@@ -1,0 +1,21 @@
+mpn: "CRA2512-FZ-R020ELF"
+manufacturer: Bourns
+package: {name: "chip 2512", code: "R_2512_6332Metric", pins: 2}
+datasheet: {url: "none (manufacturer datasheet not fetched)", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "Resistor_SMD:R_2512_6332Metric"
+footprint_sha256: "abab4bf8eeb3ed03061d8eeb56b542cdac074ce8a0ace0f9b06e933c0b48f297"
+pins: 2
+pitch_mm: 5.925
+body_mm: [6.3, 3.2]
+land:
+  - {numbers: [1,2], size_mm: [1.225, 3.35], centres: [[-2.9625,0],[2.9625,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "left pad; no polarity"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "1", 2: "2"}
+symbol_pin_names: {1: "", 2: ""}
+risk: {level: normal, reason: "non-polar two-terminal chip part"}
+verified: {by: "pcb-kit agent", date: "2026-11-12", layers: [record]}
+notes: "20 mOhm 1% 2 W current sense resistor, 2512, Kelvin-sensed through two net ties at the pads. Land is the KiCad stdlib/IPC land; compare with the Bourns CRA2512 recommended land before the first order."
