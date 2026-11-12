@@ -1,4 +1,4 @@
-mpn: "SK92100SA"
+mpn: "SK 92 100 SA"
 manufacturer: Fischer Elektronik
 package: {name: "extruded heat sink SK 92, 100 mm, standing, 2 x M3 tapped", code: "SK 92 100 SA", pins: 1}
 datasheet: {url: "https://www.fischerelektronik.de (SK 92 drawing, owner screenshot 2026-11-06)", revision: "drawing as received", page_land_pattern: 1, page_pinout: 1}

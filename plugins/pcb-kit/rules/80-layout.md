@@ -89,3 +89,15 @@
   with patch zones; change the main outline or the keep-out instead.
 - **45° corners only**, no 90° corners and no arcs mixed in. Check every corner by script before handover
   (angle between consecutive segments of a net on one layer), not only by eye.
+
+## pcbnew API on a closed board (KiCad 10, Python 3.14)
+- With KiCad closed, `pcbnew.LoadBoard` / `SaveBoard` edit the board through KiCad's own serializer (not a text
+  edit). Work on a copy first, `kicad-cli pcb drc --refill-zones` it, then repeat on the real file and commit.
+- `ZONE.SetOutline()` keeps a pointer to the Python-owned polygon and crashes the filler later: edit
+  `zone.Outline()` in place (`RemoveAllContours`, `NewOutline`, `Append`).
+- After `BOARD.Remove()` the SWIG iterators of that process can break (`SwigPyObject is not iterable`): collect
+  everything first, remove just before saving, and split multi-phase edits into separate processes.
+- Removing a via or track leaves its teardrop zone behind and the zone filler segfaults: remove teardrop zones
+  of the same net that touch the removed ends, and regenerate teardrops in the GUI afterwards.
+- Footprint 3D model settings: change `fp.Models()[i].m_Rotation = VECTOR3D(...)` by index; assigning to the
+  fields of an iterated copy does nothing.
