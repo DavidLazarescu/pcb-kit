@@ -109,6 +109,8 @@
   copper against all isolated copper, every layer, projected) before handover.
 
 ## pcbnew API on a closed board (KiCad 10, Python 3.14)
+- Check for `~*.kicad_pcb.lck` / `~*.kicad_pro.lck` right before every write, not once per session: the owner may open
+  the project in between, and a later save from the GUI silently overwrites the scripted changes. Put the check in the script.
 - With KiCad closed, `pcbnew.LoadBoard` / `SaveBoard` edit the board through KiCad's own serializer (not a text
   edit). Work on a copy first, `kicad-cli pcb drc --refill-zones` it, then repeat on the real file and commit.
 - `ZONE.SetOutline()` keeps a pointer to the Python-owned polygon and crashes the filler later: edit
