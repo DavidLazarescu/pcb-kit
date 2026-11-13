@@ -31,5 +31,6 @@ script, for board text and markings; it sees `P`, `b` and `F` (reference to foot
 
 | Tool | Does |
 |---|---|
+| `joints.py BOARD.kicad_pcb` | Read-only, PCB. Lists tracks that enter a pad off-centre or graze its edge, vias joined only by touching a track, one via serving several pads, T joints in the middle of a track (info) and corners sharper than 135°. Review every finding; chains that reach the pad centre over several short segments and Kelvin taps are expected leftovers. |
 | `isocheck.py BOARD.kicad_pcb GAP_MM NET[,NET...]` | Read-only, PCB. Projects all copper of the listed port-side nets (pads, tracks, vias, zone fills, every copper layer) against all other copper on every layer and lists every spot closer than GAP_MM. Same-layer DRC misses a plane on an inner layer that reaches under the other side. Empty list and `PASS` is the pass. |
 | `schstubs.py SHEET.kicad_sch ...` | Read-only. Lists pins (power symbols, test points, parts) that meet a wire across, sit on a T or have a stub shorter than 2.54 mm, and wire nodes with three or more ends but no junction dot. Run after every schematic edit; empty output is the pass. |

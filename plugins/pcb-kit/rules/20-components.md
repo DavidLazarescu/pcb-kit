@@ -34,4 +34,6 @@
 - Preferred: a remote-diode sensor (TMP451, NCT72 class) with a hardware THERM output whose power-up limits
   already sit at a safe value, and a 2N3904 glued on the device body as the diode. The same chip reports the
   temperature over I²C, so one part gives readback and a software-free cut-off.
+- Place the sensor chip next to the remote diode: the D+/D− path carries microamps and millivolts, while the I²C
+  and THERM lines that then take the long way are robust logic signals.
 - An open sensor wire does not trip THERM on these parts: the driver checks the OPEN status bit at every step.

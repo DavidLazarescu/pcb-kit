@@ -101,6 +101,8 @@
 - **Pours are proper polygons.** A copper area that joins pads (source to shunt, regulator tab) is a polygon
   drawn around the pads it serves, with 45° sides and a solid pad connection, not a rectangle cutting through
   a pad and not tracks dressed up with teardrops.
+- **Check every joint by script before handover** (`tools/joints.py`): a reviewer who finds one sloppy joint
+  will find the same pattern elsewhere, so fix the pattern board-wide, not only the spot that was marked.
 - **Isolation is checked across layers, projected.** A plane of the isolated side must not reach under the
   port side on another layer: an inner plane 0.2 mm below a port pad is as close as its prepreg, not as far as
   the same-layer DRC says. Keep the barrier band free on every layer and run `tools/isocheck.py` (all port
