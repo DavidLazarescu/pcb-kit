@@ -26,3 +26,12 @@
 - A BOM table: function, MPN, footprint, stock + date, price, status, source.
 - Maintain `parts-registry.md` for parts reused across boards.
 - A "removed / kept and why" table for KISS and price review.
+
+## Temperature protection measures the hot part
+- An over-temperature failsafe senses the device it protects (MOSFET, regulator), not the board copper near
+  its heat sink. A board sensor reads low by an unknown margin and cannot see a mounting fault (missing paste,
+  loose screw), where the device overheats while the heat sink stays cool.
+- Preferred: a remote-diode sensor (TMP451, NCT72 class) with a hardware THERM output whose power-up limits
+  already sit at a safe value, and a 2N3904 glued on the device body as the diode. The same chip reports the
+  temperature over I²C, so one part gives readback and a software-free cut-off.
+- An open sensor wire does not trip THERM on these parts: the driver checks the OPEN status bit at every step.

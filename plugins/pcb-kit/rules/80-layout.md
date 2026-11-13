@@ -90,6 +90,22 @@
 - **45° corners only**, no 90° corners and no arcs mixed in. Check every corner by script before handover
   (angle between consecutive segments of a net on one layer), not only by eye.
 
+- **Teardrops only on clean joints.** A teardrop grown on a bad joint (pad to pad, a via squeezed between
+  pads, a short stub into a tab) becomes an odd blob that reviewers read as an unreliable connection. Fix the
+  geometry first, then generate teardrops (house standard), and look at them before handover. A teardrop never
+  patches a joint.
+- **A track enters a pad end-on, from the pad centre.** Never let a track slide along a pad edge or end at the
+  pad rim with a sliver of overlap; a T-junction belongs on the track, away from the pad.
+- **One via per pad.** Two pads never share a via placed between them; each pad gets its own via straight
+  out from its centre. A via never "touches" a track to connect; join it with its own stub.
+- **Pours are proper polygons.** A copper area that joins pads (source to shunt, regulator tab) is a polygon
+  drawn around the pads it serves, with 45° sides and a solid pad connection, not a rectangle cutting through
+  a pad and not tracks dressed up with teardrops.
+- **Isolation is checked across layers, projected.** A plane of the isolated side must not reach under the
+  port side on another layer: an inner plane 0.2 mm below a port pad is as close as its prepreg, not as far as
+  the same-layer DRC says. Keep the barrier band free on every layer and run `tools/isocheck.py` (all port
+  copper against all isolated copper, every layer, projected) before handover.
+
 ## pcbnew API on a closed board (KiCad 10, Python 3.14)
 - With KiCad closed, `pcbnew.LoadBoard` / `SaveBoard` edit the board through KiCad's own serializer (not a text
   edit). Work on a copy first, `kicad-cli pcb drc --refill-zones` it, then repeat on the real file and commit.
@@ -98,6 +114,8 @@
 - After `BOARD.Remove()` the SWIG iterators of that process can break (`SwigPyObject is not iterable`): collect
   everything first, remove just before saving, and split multi-phase edits into separate processes.
 - Removing a via or track leaves its teardrop zone behind and the zone filler segfaults: remove teardrop zones
-  of the same net that touch the removed ends, and regenerate teardrops in the GUI afterwards.
+  of the same net that touch the removed ends (or remove all of them and regenerate in the GUI after the edit; the Python API cannot generate teardrops).
+- A footprint loaded with `FootprintLoad(dir, name)` has no library nickname: set `SetFPID(LIB_ID(nick, name))`,
+  `SetPath`, `SetSheetname` and `SetSheetfile`, then confirm with `kicad-cli pcb drc --schematic-parity`.
 - Footprint 3D model settings: change `fp.Models()[i].m_Rotation = VECTOR3D(...)` by index; assigning to the
   fields of an iterated copy does nothing.
