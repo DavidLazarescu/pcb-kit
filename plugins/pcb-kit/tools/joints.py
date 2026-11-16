@@ -88,6 +88,36 @@ for v in vias:
     if len(pc) > 1:
         issues["one via serves several pads directly"].append(f"via {v.GetNetname()} ({c[0]:.2f},{c[1]:.2f}) -> {sorted(pc)}")
 
+# vias left over after a clean-up: no track and no pad at all, or only tracks that lead to nothing.
+# They still join two planes, so DRC and the unconnected list stay quiet; a stitching via that is meant
+# to be one is listed too and is fine to leave.
+def chain_reaches(v, n, c):
+    start = [t for t in tracks if t.GetNetCode() == n and (d(P(t.GetStart()), c) < TOL or d(P(t.GetEnd()), c) < TOL)]
+    seen, stack = set(), list(start)
+    while stack:
+        t = stack.pop()
+        if t.m_Uuid.AsString() in seen: continue
+        seen.add(t.m_Uuid.AsString())
+        for e in (P(t.GetStart()), P(t.GetEnd())):
+            if d(e, c) < TOL: continue
+            if pad_hit(e, t.GetLayer(), n) is not None: return start, True
+            if any(o.GetNetCode() == n and d(P(o.GetPosition()), e) < TM(o.GetWidth(pcbnew.F_Cu)) / 2 + TOL
+                   for o in vias if o.m_Uuid.AsString() != v.m_Uuid.AsString()): return start, True
+            stack += ends.get((t.GetLayer(), n, (round(e[0], 2), round(e[1], 2))), [])
+    return start, False
+for v in vias:
+    n, c = v.GetNetCode(), P(v.GetPosition())
+    if any(p.GetNetCode() == n and p.HitTest(v.GetPosition()) for p in pads): continue
+    start, ok = chain_reaches(v, n, c)
+    if not start:
+        zn = sorted({(z.GetZoneName() or "unnamed") + "/" + B.GetLayerName(l) for z in B.Zones() for l in z.GetLayerSet().Seq()
+                     if z.GetNetCode() == n and not z.IsTeardropArea() and not z.GetIsRuleArea() and v.IsOnLayer(l)
+                     and z.HitTestFilledArea(l, v.GetPosition(), 0)})
+        issues["via joined only by zones: stray, or stitching (read the zones)"].append(
+            f"via {v.GetNetname()} ({c[0]:.3f},{c[1]:.3f}) zones {zn}")
+    elif not ok:
+        issues["via whose tracks lead nowhere"].append(f"via {v.GetNetname()} ({c[0]:.3f},{c[1]:.3f}), {len(start)} dead track(s)")
+
 # corners between exactly two segments without pad/via
 for (L, n, pt), ts in ends.items():
     if len(ts) != 2: continue

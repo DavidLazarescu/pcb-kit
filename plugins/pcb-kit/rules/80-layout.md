@@ -102,6 +102,11 @@
   a pad and not tracks dressed up with teardrops.
 - **Check every joint by script before handover** (`tools/joints.py`): a reviewer who finds one sloppy joint
   will find the same pattern elsewhere, so fix the pattern board-wide, not only the spot that was marked.
+- **After removing parts, look for what they left.** A via that joined the removed part to a plane survives a
+  dangling-copper clean-up because it still joins two planes, often with a few tenths of a millimetre of dead
+  track. DRC and the unconnected list stay silent. `joints.py` lists vias whose tracks lead nowhere and vias
+  joined only by zones with the zone names; every one that only joins the planes and has no stated stitching
+  purpose goes.
 - **Isolation is checked across layers, projected.** A plane of the isolated side must not reach under the
   port side on another layer: an inner plane 0.2 mm below a port pad is as close as its prepreg, not as far as
   the same-layer DRC says. Keep the barrier band free on every layer and run `tools/isocheck.py` (all port
