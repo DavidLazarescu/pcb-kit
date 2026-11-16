@@ -1,0 +1,21 @@
+mpn: "C0603C105K4RACTU"
+manufacturer: KEMET
+package: {name: "chip 0603", code: "C_0603_1608Metric", pins: 2}
+datasheet: {url: "none (manufacturer datasheet not fetched)", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "Capacitor_SMD:C_0603_1608Metric"
+footprint_sha256: "fe0dbfefbb181a0466f93a8de52d84ba7b00fcd9acdbb69575f4128a0af4e405"
+pins: 2
+pitch_mm: 1.55
+body_mm: [1.6, 0.8]
+land:
+  - {numbers: [1,2], size_mm: [0.9, 0.95], centres: [[-0.775,0],[0.775,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "left pad; no polarity"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "1", 2: "2"}
+symbol_pin_names: {1: "", 2: ""}
+risk: {level: normal, reason: "non-polar two-terminal chip part"}
+verified: {by: "pcb-kit agent", date: "2026-11-16", layers: [record]}
+notes: "1 uF 16 V X7R MLCC, 0603. Package size taken from the MPN size code; land is the KiCad stdlib/IPC land (no manufacturer land checked)."

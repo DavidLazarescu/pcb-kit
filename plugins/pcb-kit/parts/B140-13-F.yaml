@@ -1,0 +1,20 @@
+mpn: "B140-13-F"
+manufacturer: Diodes Incorporated
+package: {name: "SMA", code: "DO-214AC", pins: 2}
+datasheet: {url: "https://www.diodes.com/assets/Datasheets/ds13002.pdf", revision: "not fetched", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "Diode_SMD:D_SMA"
+footprint_sha256: "f7cba3b52ed8b34dce89170722de58324eac04e9e61a095e0eab37b9ca93cb7f"
+pins: 2
+pitch_mm: 4.0
+body_mm: [4.3, 2.6]
+land:
+  - {numbers: [1,2], size_mm: [2.5, 1.8], centres: [[-2.0,0],[2.0,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "pad 1 = cathode (band side), left"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "K", 2: "A"}
+risk: {level: normal, reason: "polarised; pad 1 must be the cathode (band)"}
+verified: {by: "pcb-kit agent", date: "2026-11-16", layers: [record]}
+notes: "Schottky 40 V 1 A, SMA/DO-214AC. Land is the KiCad stdlib D_SMA; the stdlib pad 1 is the cathode, matching the Device:D_Schottky symbol (1 K, 2 A)."

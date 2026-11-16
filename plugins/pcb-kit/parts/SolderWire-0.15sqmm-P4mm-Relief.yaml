@@ -1,0 +1,23 @@
+mpn: "SolderWire-0.15sqmm-P4mm-Relief"
+manufacturer: "none (bare board pads)"
+package: {name: "wire solder pads with strain relief", code: "SolderWire-0.15sqmm_1x02_P4mm_D0.5mm_OD1.5mm_Relief", pins: 2}
+datasheet: {url: "none (KiCad stdlib Connector_Wire footprint)", revision: "n/a", page_land_pattern: 0, page_pinout: 0}
+kicad_footprint: "Connector_Wire:SolderWire-0.15sqmm_1x02_P4mm_D0.5mm_OD1.5mm_Relief"
+footprint_sha256: "99ed20509439c34df61972454e7b8f726022200dd718f3d37ed45217014041fc"
+pins: 2
+pitch_mm: 4.0
+body_mm: [5.7, 11.0]
+land:
+  - {numbers: [1,2], size_mm: [1.7, 1.7], centres: [[0,0],[4.0,0]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "pad 1 square, left"}
+pin1_side: {x: neg, y: mid}
+pin_table: {1: "Pin_1", 2: "Pin_2"}
+symbol_pin_names: {1: "Pin_1", 2: "Pin_2"}
+drill_mm: 0.7
+risk: {level: normal, reason: "no component; wires soldered by hand"}
+no_3d_reason: "bare solder pads for two wires, nothing is placed"
+verified: {by: "pcb-kit agent", date: "2026-11-16", layers: [record]}
+notes: "Pseudo MPN for wire pads (nothing to order, Supplier none). Pads 1.7 mm with 0.7 mm drill for 0.15 mm2 wire (0.5 mm conductor), strain-relief holes 2.0 mm NPTH 9 mm below each pad."

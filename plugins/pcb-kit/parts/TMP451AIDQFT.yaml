@@ -1,0 +1,22 @@
+mpn: "TMP451AIDQFT"
+manufacturer: Texas Instruments
+package: {name: "WSON-8 2x2, no exposed pad", code: "DQF0008A", pins: 8}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/tmp451.pdf", revision: "SBOS686A (package pages 03/2021)", page_land_pattern: 41, page_pinout: 3}
+kicad_footprint: "HIL_Daughter_Load:Texas_DQF0008A_WSON-8_2x2mm_P0.5mm"
+footprint_sha256: "9785b3a2c706d65f64239a26fb4a44bcda2f880fda1c2172e9efa1d574356e02"
+pins: 8
+pitch_mm: 0.5
+body_mm: [2.0, 2.0]
+land:
+  - {numbers: [1], size_mm: [0.8, 0.25], centres: [[-0.8,-0.75]]}
+  - {numbers: [2,3,4,5,6,7,8], size_mm: [0.7, 0.25], centres: [[-0.85,-0.25],[-0.85,0.25],[-0.85,0.75],[0.85,0.75],[0.85,0.25],[0.85,-0.25],[0.85,-0.75]]}
+land_position_tol_mm: 0.05
+land_size_tol_mm: 0.05
+exposed_pad: {present: false}
+pin1: {description: "top-left, pad 1 longer toward the centre (0.8 mm), 1-4 down the left, 5-8 up the right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: "V+", 2: "D+", 3: "D-", 4: "THERM", 5: "GND", 6: "ALERT/THERM2", 7: "SDA", 8: "SCL"}
+symbol_pin_names: {6: "ALERT"}
+risk: {level: high, reason: "0.5 mm leadless package, hand assembly; THERM is the hardware failsafe"}
+verified: {by: "pcb-kit agent", date: "2026-11-16", layers: [record]}
+notes: "Land from the DQF0008A example board layout: 0.25 x 0.7 pads, pin 1 0.25 x 0.8 with the same outer end, rows 1.7 mm centre to centre, no centre pad. NCT72CMTR2G is a drop-in candidate (same pinout and POR limits) but its land pattern is not checked against this footprint."

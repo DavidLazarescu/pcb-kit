@@ -1,0 +1,20 @@
+mpn: "LM2665M6X/NOPB"
+manufacturer: Texas Instruments
+package: {name: "SOT-23-6", code: "DBV0006A", pins: 6}
+datasheet: {url: "https://www.ti.com/lit/ds/symlink/lm2665.pdf", revision: "SNVS009H", page_land_pattern: 0, page_pinout: 3}
+kicad_footprint: "Package_TO_SOT_SMD:SOT-23-6"
+footprint_sha256: "f341c73aac9dcb553456f68bf3fee3d26eb14acf6d8a1cae82b50418fe1d71ca"
+pins: 6
+pitch_mm: 0.95
+body_mm: [1.6, 2.9]
+land:
+  - {numbers: [1,2,3,4,5,6], size_mm: [1.325, 0.6], centres: [[-1.1375,-0.95],[-1.1375,0],[-1.1375,0.95],[1.1375,0.95],[1.1375,0],[1.1375,-0.95]]}
+land_position_tol_mm: 0.4
+land_size_tol_mm: 0.3
+exposed_pad: {present: false}
+pin1: {description: "top-left, 1-3 down the left, 4-6 up the right"}
+pin1_side: {x: neg, y: neg}
+pin_table: {1: "V+", 2: "GND", 3: "CAP-", 4: "SD", 5: "OUT", 6: "CAP+"}
+risk: {level: normal, reason: "SD must be tied low for always-on; CAP+ and CAP- on opposite corners"}
+verified: {by: "pcb-kit agent", date: "2026-11-16", layers: [record]}
+notes: "Pin table from SNVS009H section 5 (pin functions). Standard JEDEC SOT-23-6 land (stdlib), as for USBLC6-2SC6."

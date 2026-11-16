@@ -3,7 +3,7 @@ manufacturer: Keystone Electronics
 package: {name: "SMT test point, miniature", code: "5019", pins: 1}
 datasheet: {url: "https://www.keyelco.com/userAssets/file/M65p55.pdf", revision: "catalog page M65p55", page_land_pattern: 1, page_pinout: 1}
 kicad_footprint: "HIL_Daughter_Load:TestPoint_Keystone_5019_Miniature"
-footprint_sha256: "2443f0efe53bf2d825f7527c34881eecc724d31be88aef3e61bf69b775504592"
+footprint_sha256: "1a2cbd6453e449b9ebd57be30abb802e932babfbde2cc89b7725be1f63b014c6"
 pins: 1
 pitch_mm: 0
 body_mm: [3.0, 1.6]
@@ -15,5 +15,5 @@ pin1: {description: "single terminal, no polarity"}
 pin1_side: {x: mid, y: mid}
 pin_table: {1: "1"}
 risk: {level: normal, reason: "single pad, no polarity; custom 3D alignment"}
-verified: {by: "pcb-kit agent", date: "2026-11-09", layers: [record]}
-notes: "Catalog page gives a pad layout of 3.0 x 1.6 mm (.120 x .064 in); the stdlib pad is 3.8 x 2.0 (larger, acceptable for a test point, tolerance widened). Pad is numbered 1 to match Connector:TestPoint pin 1; the manufacturer CAD download names the pad TP, which would leave the net unconnected. 3D: manufacturer STEP (inch units), bbox centred on the origin, X 3.81 x Y 2.29 x Z 2.03 mm; z offset +1.016 puts the bbox bottom on the board; X long side matches the pad long side, rotation 0. Alignment derived from bbox only, not rendered."
+verified: {by: "pcb-kit agent", date: "2026-11-16", layers: [record]}
+notes: "Catalog page gives a pad layout of 3.0 x 1.6 mm (.120 x .064 in); the stdlib pad is 3.8 x 2.0 (larger, acceptable for a test point, tolerance widened). Pad is numbered 1 to match Connector:TestPoint pin 1; the manufacturer CAD download names the pad TP, which would leave the net unconnected. 3D: manufacturer STEP (inch units), bbox centred on the origin, X 3.81 x Y 2.29 x Z 2.03 mm; z offset +1.016 puts the bbox bottom on the board; X long side matches the pad long side, rotation 0. Alignment derived from bbox only, not rendered. 2026-11-12: model rotated X -90 and offset 1.143 so the loop stands upright (owner review, rendered); pads unchanged, hash updated 2026-11-16."
