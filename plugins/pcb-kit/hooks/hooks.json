@@ -4,13 +4,43 @@
       {
         "matcher": "Edit|Write|NotebookEdit",
         "hooks": [
-          { "type": "command", "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/block-kicad-text-edits.sh" }
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/block-kicad-text-edits.sh"
+          }
         ]
       },
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/block-kicad-text-edits.sh" }
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/block-kicad-text-edits.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__konnect__.*|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -I ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/log-tool-friction.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "mcp__konnect__.*|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -I ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/log-tool-friction.py",
+            "timeout": 5
+          }
         ]
       }
     ]

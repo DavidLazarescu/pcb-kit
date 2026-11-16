@@ -25,10 +25,11 @@ Phase skills each add what the generic Konnect skills (`konnect`, `kicad-schemat
 | 90 | `pcb-manufacture` | Stock re-checked, `tools/bom_fpcheck.sh` all PASS (records, pin names, 3D models) and L3 sign-off for high-risk parts (`rules/25`), outputs generated, first-board bench tests listed |
 
 Do not skip a gate. If a later phase reveals an earlier error, go back, fix the document first, then the design.
+Before passing any gate, append the phase retrospective to the tool feedback log (`rules/05-tool-feedback.md`).
 
 ## Rule layering
 
-Each phase skill reads, in order, the kit rules (`${CLAUDE_PLUGIN_ROOT}/rules/00-house-standards.md`, `${CLAUDE_PLUGIN_ROOT}/rules/<phase>.md`) and then the project rules (`pcb-rules/00-house-standards.md`, `pcb-rules/<phase>.md`). Later layers win. Conflicts are stated to the user.
+Each phase skill reads, in order, the kit rules (`${CLAUDE_PLUGIN_ROOT}/rules/00-house-standards.md`, `${CLAUDE_PLUGIN_ROOT}/rules/05-tool-feedback.md`, `${CLAUDE_PLUGIN_ROOT}/rules/<phase>.md`) and then the project rules (`pcb-rules/00-house-standards.md`, `pcb-rules/<phase>.md`). Later layers win. Conflicts are stated to the user.
 
 Phase files: 10-requirements, 20-components, 30-calculations-simulation, 40-schematic-spec, 50-schematic-build, 60-verification, 70-layout-plan, 80-layout, 90-manufacture.
 
@@ -51,6 +52,7 @@ Templates are in `${CLAUDE_PLUGIN_ROOT}/templates/`. Status marks: [V] verified 
 - Plan fully before building; write state so a new chat can resume from files (DESIGN section "where to resume").
 - One agent per sheet with fixed reference ranges; mechanical lookups to cheap agents.
 - Say what was verified and what was not.
+- Log tool friction as it happens in `~/Work/pcb-feedback/<board>.md` (`rules/05-tool-feedback.md`); the hook adds tool errors, large responses and pcbnew scripts by itself.
 
 ## Agents
 `part-researcher` (haiku), `schematic-builder` (sonnet), `schematic-verifier` (sonnet).

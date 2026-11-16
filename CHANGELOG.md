@@ -15,3 +15,4 @@
 - 2026-11-09: rule 45: tile-level render review (12 tiles at 4200 px) with a defect list, defect criteria, review by someone other than the builder; overview-zoom checks let overlaps and a broken custom op-amp symbol through.
 - 2026-11-11: rule 45: split sheets along the signal chain; measurement next to what it measures (EE review).
 - 2026-11-11: rule 45: note texts short and explanatory, math only for non-trivial results.
+- 2026-11-16: tool feedback log: rule 05 (entries while friction happens, retrospective at every gate), `templates/TOOL_FEEDBACK.md`, hook `log-tool-friction.py` (PostToolUse and PostToolUseFailure: Konnect errors, responses over 10 kB, pcbnew/kipy Bash scripts) writing to `~/Work/pcb-feedback/auto/`.

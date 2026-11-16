@@ -15,7 +15,7 @@ It adds to, and does not replace, the generic Konnect skills (`konnect`, `kicad-
 | `templates/` | DESIGN, SCHEMATIC_SPEC, ROUTING_PLAN, RESEARCH, project CLAUDE.md, `pcb-rules/`, parts registry |
 | `tools/` | `verify.sh`, `netcompare.py`, `thermal.py`, `fpcheck.py`, `fpdiff.py`, `schcheck.py` (schematic text-overlap check), `bom_fpcheck.sh` (footprint gate, stdlib only) |
 | `parts/` | Parts registry, one YAML per MPN (see `parts/README.md`) |
-| `hooks/` | Blocks text edits of `*.kicad_*` files |
+| `hooks/` | Blocks text edits of `*.kicad_*` files; logs Konnect errors, large responses and pcbnew/kipy scripts to `~/Work/pcb-feedback/auto/` (`rules/05-tool-feedback.md`) |
 
 Phases: 10 requirements, 20 components, 30 calculations and simulation, 40 schematic spec, 50 schematic build, 60 verification, 70 layout plan, 80 layout, 90 manufacture. Layout skills are thin and get extended after the first layout.
 
