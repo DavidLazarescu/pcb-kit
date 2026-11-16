@@ -33,7 +33,9 @@ Research before writing the plan:
 - Per part: one research agent reads the **Layout / Layout Guidelines / Layout Example** section of every
   IC and power-part datasheet plus the relevant app notes and returns placement, routing, decoupling,
   thermal and keep-out rules with page numbers, and a critical-net table. Verify its pin numbers against
-  the netlist; research agents get pinouts wrong.
+  the netlist; research agents get pinouts wrong. It also names the **layout example figure** and describes
+  where each capacitor sits in it (side of the package, layer, which trace runs under the body, where the
+  vias are), and which pins tied to a rail are configuration pins rather than supply or return.
 
 The plan contains, in this order (template `templates/ROUTING_PLAN.md`):
 0. Owner decisions (mounting, size, connector edges, layers).
@@ -55,6 +57,9 @@ The plan contains, in this order (template `templates/ROUTING_PLAN.md`):
 7. Placement groups in order (mechanical → barrier → power cell → control loop → set point →
    readback → supplies → indicators/test points).
 8. Critical-net table: every net from the design notes and the per-part research with rule and source.
+   Followed by a **capacitor table**: every capacitor with the IC it serves, its tier (rule 80, *Capacitor
+   placement*), the datasheet figure it follows, and the IC's real supply and return pins. These rows become the
+   `--tier` and `--pins` arguments of `tools/capcheck.py`.
    Prefer high-current paths that stay on one layer between THT pads (no vias), and route the sensitive
    net across a high-current path on the opposite layer.
 9. Order of work with checkpoints A (placement), B (critical nets), C (complete) — see rule 80.

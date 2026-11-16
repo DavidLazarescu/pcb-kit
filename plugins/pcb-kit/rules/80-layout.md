@@ -72,10 +72,9 @@
   downloaded model. Vendor STEP files from SolidWorks are often drawn Y-up: the part lies on its side and needs
   rotate X 90° plus a Z offset of half its height. Fix it in the library footprint and update the board from
   the library, so the fix survives.
-- **Decoupling first, routing second.** The small capacitor sits right at its supply pin (pad to pad about
-  1 mm where the package allows) and is turned so its ground pad faces the IC ground pin, or a ground via
-  placed directly at that pad. The loop supply pin → capacitor → ground → IC ground is the smallest possible;
-  bulk capacitors sit behind it. Do not move a capacitor away to make a route prettier; route around it.
+- **Decoupling first, routing second.** Capacitors are placed before the signals around them are routed. A
+  signal is routed around a capacitor; a capacitor is never moved away to make a route prettier. The full
+  rule is the section *Capacitor placement* below.
 - **Test points are labelled with the signal**, not the reference: the silk next to a test point reads
   `GND`, `GATE`, `I_SET`, and the TP reference is hidden. No separate test-point legend table, because looking
   up a table while probing is overhead.
@@ -108,6 +107,52 @@
   the same-layer DRC says. Keep the barrier band free on every layer and run `tools/isocheck.py` (all port
   copper against all isolated copper, every layer, projected) before handover.
 
+## Capacitor placement (owner review 2026-11-16)
+Capacitor placement is checked first and hardest, because it is where a layout most often looks routed but
+works worse than the datasheet's own board. The owner found a charge-pump flying capacitor reached through two
+vias and a B.Cu detour, and an output capacitor whose ground pad pointed away from the IC with its via
+2 mm off. Neither failed DRC. Trying placements is cheap for an agent, so try several and measure them; do
+not settle on the first that routes.
+
+**The current loop is what counts.** For every capacitor, follow the copper from the IC supply pin through
+the capacitor back to the IC's own return pin. Keep that loop short and small. Vias add inductance to it,
+and a return that has to cross the package adds area.
+
+**Strictness follows what the loop carries.** Each capacitor gets a tier in the routing plan (§ critical
+nets):
+| Tier | Which capacitors | Rule |
+|---|---|---|
+| 1 | Switching and charge-pump loops: flying, input and output capacitors of converters, gate-drive bootstrap, anything carrying fast pulsed current | Datasheet layout example followed exactly. **No via** in a signal leg (a flying capacitor has two). All capacitors on the IC's layer, joined by top copper; input and output returns meet at one point next to the IC ground pin. |
+| 2 | Supply pins of ICs, references (VREF, VREFIO), ADC/DAC, amplifier and sensor supplies, input filter capacitors at an amplifier | At the pins, no via in the signal leg. The ground pad faces the IC ground pin where the supply and ground pins are neighbours; otherwise it gets its own via right at the pad, as the datasheet examples draw it. |
+| 3 | Bulk and entry capacitors, a second capacitor of the same size behind the first, pull-ups | Near the rail they serve, reported but not failed. No effort spent beyond tidy routing. |
+
+**Read the datasheet's Layout section before placing**, and copy its topology, not just "close to the pin":
+which layer, which side of the package, which trace runs under the body, where the via sits. Record each
+IC's figure (e.g. "LM2665 Figure 17") in the routing plan. A deviation is allowed when it is measured better
+on this stackup (a 4-layer board with ground directly under the top can beat a 2-layer example), and the
+reason goes into the plan.
+
+**Practical points from the first review:**
+- A trace under the package body is often the datasheet's answer: a SOT-23-6 charge pump with CAP+ and CAP−
+  on opposite corners reaches its flying capacitor on top by running CAP− between the pin rows.
+- Two capacitors of the same package in parallel: the one the datasheet names (the CIN or COUT carrying the
+  charge) goes closest. A 100 nF of the same size behind it gains no ESL.
+- A pin tied to a rail for configuration (shutdown, address, interface select) is not a supply or return
+  pin. Give it its own via and do not count it as the IC's ground.
+- Fine-pitch supply and ground pins next to each other (MSOP VS/GND): put the capacitor beside the pins
+  with direct top tracks to both, not below the package with a plane hop.
+- An IC ground pin may reach the plane through the ground pad and via of its own capacitor; that is still
+  one via per pad.
+
+**Measure, do not judge by eye.** `tools/capcheck.py BOARD --tier IC=1 ... --pins IC=n,n` follows the real
+copper (pads, tracks, vias, zone fill) for every capacitor and fails a row on vias in a signal leg, a
+ground via far from its pad, a loop longer than 2× (tier 1) or 2.5× (tier 2) the ideal for that pin pair,
+or a ground pad facing away. Its score compares variants of the same board. Workflow: build each candidate
+placement as a copy of the board by script, run `capcheck.py`, DRC and `joints.py` on each, keep the best,
+note the rejected variants and their numbers in the plan. Run it at checkpoint A (placement) and again
+before handover. A capacitor that fails stays failed until it is moved or its tier is changed with a reason
+in the plan.
+
 ## pcbnew API on a closed board (KiCad 10, Python 3.14)
 - Check for `~*.kicad_pcb.lck` / `~*.kicad_pro.lck` right before every write, not once per session: the owner may open
   the project in between, and a later save from the GUI silently overwrites the scripted changes. Put the check in the script.
@@ -123,3 +168,7 @@
   `SetPath`, `SetSheetname` and `SetSheetfile`, then confirm with `kicad-cli pcb drc --schematic-parity`.
 - Footprint 3D model settings: change `fp.Models()[i].m_Rotation = VECTOR3D(...)` by index; assigning to the
   fields of an iterated copy does nothing.
+- Load, edit and save one board per process. After `Save`, `FindFootprintByReference` and a second `LoadBoard`
+  in the same process return bare SWIG objects (`no attribute 'Pads'`, `'BuildConnectivity'`): run the zone
+  fill as its own process.
+- Footprint fields in KiCad 10: `GetFieldByName` is gone; pick the field from `fp.GetFields()` by `GetName()`.

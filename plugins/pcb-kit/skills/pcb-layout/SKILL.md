@@ -21,7 +21,7 @@ Status: first full use 2026-11; extend after each layout. Gates and checkpoints:
 1. Read the rule layers above. Refuse to start without an approved plan.
 2. Confirm KiCad is running with the board open in the PCB editor (IPC) and the user does not edit it. Commit first.
 3. Update the PCB from the schematic; set outline, holes, keep-outs, isolation gaps on all layers.
-4. Place fixed parts (connectors, isolating parts), then critical clusters, then the remaining groups, then decoupling at the pins, then LEDs, test points.
+4. Place fixed parts (connectors, isolating parts), then critical clusters, then the remaining groups, then decoupling at the pins, then LEDs, test points. Capacitors follow their datasheet layout example and their tier (rule 80, *Capacitor placement*): build two or three candidate placements for every tier-1 and tier-2 group as board copies, score them with `tools/capcheck.py`, keep the best and note the rest in the plan.
 5. Create zones and planes; check return paths.
 6. Route critical nets by hand with Konnect track and via tools; check each against its plan rule after routing.
 7. Route the rest by hand: consistent widths, 45 degree corners, no acute angles, no stubs, parallel buses aligned, few vias, tidy fanouts, stitching vias.
@@ -31,6 +31,7 @@ Status: first full use 2026-11; extend after each layout. Gates and checkpoints:
 
 ## Gate (done when)
 - [ ] All critical nets match plan rules
+- [ ] `capcheck.py` passes with the plan's tiers and pins
 - [ ] DRC 0
 - [ ] Independent review done and findings closed
 - [ ] Committed
